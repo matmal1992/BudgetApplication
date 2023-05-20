@@ -1,9 +1,12 @@
+#include "BudgetApp.h"
 #include <iostream>
+
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    BudgetApp budgetApp;
+    budgetApp.goToMainMenu();
     return 0;
 }

@@ -2,3 +2,9 @@ Budget App.mm
 BudgetApp.cbp
 BudgetApp.uxf
 functions_MMalek.txt
+Users.xml
+bin/
+obj/
+BudgetApp.layout
+BudgetApp.depend
+
