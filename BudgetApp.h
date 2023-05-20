@@ -12,12 +12,16 @@ class BudgetApp
 {
     UserManager userManager;
     OperationManager *operationManager;
-    const string NAME_OF_FILE_WITH_INCOMES;
-    const string NAME_OF_FILE_WITH_EXPENSES;
 
 public:
-    //BudgetApp();
-    //~BudgetApp();
+    //BudgetApp(): {}
+
+    ~BudgetApp()
+    {
+        delete operationManager;
+        operationManager = NULL;
+    }
+
     char chooseOptionFromUserMenu();
     char chooseOptionFromMainMenu();
     void goToMainMenu();

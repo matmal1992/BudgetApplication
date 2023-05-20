@@ -16,6 +16,7 @@ class UserManager
     FileWithUsers fileWithUsers;
 
     User insertDataForNewUser();
+    void setLoggedUserId(int id);
 
 
 public:
@@ -25,10 +26,14 @@ public:
     }
 
     void registerUser();
+    void logInUser();
+    void logOutUser();
     int getNewUserId();
     bool checkIfLoginExists(string login);
     int getLoggedUserId();
     void displayUsersData();
+    bool checkIfUserIsLogged();
+    void changePasswordOfLoggedUser();
 
 
 

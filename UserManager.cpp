@@ -20,12 +20,12 @@ User UserManager::insertDataForNewUser()
     do
     {
         cout << "Insert login: ";
-        cin >> login;
+        login = AuxiliaryMethods::readLine();
         user.setLogin(login);
     } while (checkIfLoginExists(user.getLogin()));
 
     cout << "Insert password: ";
-    cin >> password;
+    password = AuxiliaryMethods::readLine();
     user.setPassword(password);
 
     return user;
@@ -57,6 +57,78 @@ int UserManager::getLoggedUserId()
     return loggedUserId;
 }
 
+bool UserManager::checkIfUserIsLogged()
+{
+    if(getLoggedUserId() > 0)
+        return true;
+    else
+        return false;
+}
+
+void UserManager::logInUser()
+{
+    User user;
+    string login{}, password{};
+
+    cout << endl << "Insert login: ";
+    login = AuxiliaryMethods::readLine();
+
+    vector <User>::iterator itr = users.begin();
+    while (itr != users.end())
+    {
+        if (itr -> getLogin() == login)
+        {
+            for (int attempts = 3; attempts > 0; attempts--)
+            {
+                cout << "Insert password. Attempts remained: " << attempts << ": ";
+                password = AuxiliaryMethods::readLine();
+
+                if (itr -> getPassword() == password)
+                {
+                    cout << endl << "You logged in." << endl << endl;
+                    system("pause");
+                    setLoggedUserId(itr -> getId());
+                    return;
+                }
+            }
+            cout << "You inserted invalid password three times." << endl;
+            system("pause");
+            return;
+        }
+        itr++;
+    }
+    cout << "There is no user with such login." << endl << endl;
+    system("pause");
+}
+
+void UserManager::setLoggedUserId(int id)
+{
+    loggedUserId = id;
+}
+
+void UserManager::changePasswordOfLoggedUser()
+{
+    string newPassword{};
+    cout << "Insert new password: ";
+    newPassword = AuxiliaryMethods::readLine();
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); ++itr)
+    {
+        if (itr -> getId() == loggedUserId)
+        {
+            itr -> setPassword(newPassword);
+            cout << "Password has been changed." << endl << endl;
+            system("pause");
+        }
+    }
+    fileWithUsers.saveAllUsersToFile(users);
+}
+
+void UserManager::logOutUser()
+{
+    loggedUserId = 0;
+}
+
 void UserManager::displayUsersData()
 {
     cout << "Vector size: " << users.size() << endl;
@@ -68,3 +140,6 @@ void UserManager::displayUsersData()
         cout << "ID: " << itr -> getId() << endl << endl;
     }
 }
+
+
+

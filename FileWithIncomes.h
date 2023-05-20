@@ -1,7 +1,7 @@
-#ifndef _FILEWITHUSERS_H_
-#define _FILEWITHUSERS_H_
+#ifndef _FILEWITHINCOMES_H_
+#define _FILEWITHINCOMES_H_
 
-#include "User.h"
+#include "Expense.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
 
@@ -12,15 +12,16 @@
 
 using namespace std;
 
-class FileWithUsers
+class FileWithIncomes
 {
-    const string FILE_NAME = "Users.xml";
+    const string FILE_NAME = "Incomes.xml";
+    int lastIncomeId;
 public:
+    /*
     void addUserToFile(User user);
     string getFileName();
     vector <User> loadUsersFromFile();
-    void saveAllUsersToFile(vector <User> users);
-    void removeFile(string fileNameWithExtension);
+*/
 
 
 
