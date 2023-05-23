@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <ctime>
 
 using namespace std;
 
@@ -23,6 +24,8 @@ public:
     static int readIntiger();
     static int insertIdOfSelectedAddressee();
     static void displayAmountOfFoundAddressees(int amountOfAddressees);
+    static string readInsertedAmountOfMoney();
+    static string getActualDate();
 };
 
 #endif

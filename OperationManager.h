@@ -18,13 +18,13 @@ class OperationManager
     FileWithExpenses fileWithExpenses;
     const int LOGGED_USER_ID;
 
-    Income insertDataForNewIncome();
+    //Income insertDataForNewIncome();
     Expense insertDataForNewExpense();
 
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {
-        //incomes = fileWithIncomes.load...
+        incomes = fileWithIncomes.loadIncomesFromFile();
         //expenses = fileWithExpenses.load...
     }
 
@@ -34,6 +34,9 @@ public:
     void displayBalanceOfPreviousMonth();
     void displayBalanceOfSelectedMonth();
     void displayBalanceOfSelectedPeriod();
+
+    //
+    void displayIncomesData();
 
 
 

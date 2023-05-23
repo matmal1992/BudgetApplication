@@ -1,65 +1,86 @@
 #include "FileWithIncomes.h"
-/*
-string FileWithIncomes::getFileName()
-{
-    return FILE_NAME;
-}
 
-
-void FileWithUsers::addUserToFile(User user)
+void FileWithIncomes::saveIncomeToFile(Income income)
 {
     CMarkup xml;
-    xml.Load("Users.xml");
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Users");
+        xml.AddElem("Incomes");
         xml.IntoElem();
+        xml.AddElem("Income");
+
+        xml.IntoElem();
+        xml.AddElem("IncomeId", 1);
+        xml.AddElem("UserId", income.getUserId());
+        xml.AddElem("Date", income.getDate());
+        xml.AddElem("Item", income.getItem());
+        xml.AddElem("Amount", income.getAmount());
     }
     else
     {
-        xml.FindElem("Users");
+        xml.FindElem("Incomes");
         xml.IntoElem();
         while(xml.FindElem());
+
+        xml.AddElem("Income");
+        xml.IntoElem();
+        xml.AddElem("IncomeId", AuxiliaryMethods::intToStringConversion(getLastIncomeId() + 1));
+        xml.AddElem("UserId", income.getUserId());
+        xml.AddElem("Date", income.getDate());
+        xml.AddElem("Item", income.getItem());
+        xml.AddElem("Amount", income.getAmount());
     }
 
-    xml.AddElem(user.getLogin());
-    xml.IntoElem();
-    xml.AddElem("Id", user.getId());
-    xml.AddElem("Login", user.getLogin());
-    xml.AddElem("Password", user.getPassword());
-
-    xml.Save("Users.xml");
+    xml.Save(FILE_NAME);
 }
 
-vector <User> FileWithUsers::loadUsersFromFile()
+vector <Income> FileWithIncomes::loadIncomesFromFile()
 {
-    vector <User> users;
+    vector <Income> incomes;
     CMarkup xml;
-    User user;
+    Income income;
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
         cout << "The file is empty!" << endl;
     else
     {
-        xml.FindElem("Users");
+        xml.FindElem("Incomes");
         xml.IntoElem();
-        while(xml.FindElem())
+
+        while(xml.FindElem("Income"))
         {
             xml.IntoElem();
-            xml.FindElem("Id");
-            user.setId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
-            xml.FindElem("Login");
-            user.setLogin(xml.GetData());
-            xml.FindElem("Password");
-            user.setPassword(xml.GetData());
+
+            xml.FindElem("IncomeId");
+            income.setIncomeId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            xml.FindElem("UserId");
+            income.setUserId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            xml.FindElem("Date");
+            income.setDate(xml.GetData());
+            xml.FindElem("Item");
+            income.setItem(xml.GetData());
+            xml.FindElem("Amount");
+            income.setAmount(xml.GetData());
+
             xml.OutOfElem();
-
-            users.push_back(user);
+            incomes.push_back(income);
         }
+        setLastIncomeId(incomes);
     }
-
-    return users;
+    return incomes;
 }
-*/
+
+int FileWithIncomes::getLastIncomeId()
+{
+    return lastIncomeId;
+}
+
+void FileWithIncomes::setLastIncomeId(vector <Income> incomes)
+{
+    if (incomes.empty())
+        lastIncomeId = 1;
+    else
+        lastIncomeId = incomes.back().getIncomeId();
+}

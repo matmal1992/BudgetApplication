@@ -80,7 +80,7 @@ void BudgetApp::goToUserMenu()
     {
         switch (chooseOptionFromUserMenu())
         {
-        case '1': //operationManager -> addIncome();
+        case '1': operationManager -> addIncome();
             break;
         case '2': //operationManager -> addExpense();
             break;

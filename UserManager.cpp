@@ -20,7 +20,7 @@ User UserManager::insertDataForNewUser()
     do
     {
         cout << "Insert login: ";
-        login = AuxiliaryMethods::readLine();
+        login = AuxiliaryMethods::readLine(); //login empty user!!!!!!!!!!!!!!!!=================================
         user.setLogin(login);
     } while (checkIfLoginExists(user.getLogin()));
 

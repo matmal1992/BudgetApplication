@@ -1,7 +1,7 @@
 #ifndef _FILEWITHINCOMES_H_
 #define _FILEWITHINCOMES_H_
 
-#include "Expense.h"
+#include "Income.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
 
@@ -17,14 +17,16 @@ class FileWithIncomes
     const string FILE_NAME = "Incomes.xml";
     int lastIncomeId;
 public:
-    /*
-    void addUserToFile(User user);
-    string getFileName();
-    vector <User> loadUsersFromFile();
-*/
+    FileWithIncomes()
+    {
+        lastIncomeId = 0;
+    }
 
-
-
+    vector <Income> loadIncomesFromFile();
+    void saveIncomeToFile(Income income);
+    void setLastIncomeId(vector <Income> incomes);
+    int getLastIncomeId();
+    int getNewIncomeId(vector <Income> incomes);
 
 };
 

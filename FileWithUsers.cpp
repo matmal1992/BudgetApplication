@@ -9,7 +9,7 @@ void FileWithUsers::addUserToFile(User user)
 {
     CMarkup xml;
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
@@ -28,7 +28,7 @@ void FileWithUsers::addUserToFile(User user)
     xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
 
-    xml.Save("Users.xml");
+    xml.Save(FILE_NAME);
 }
 
 void FileWithUsers::saveAllUsersToFile(vector <User> users)
@@ -49,8 +49,8 @@ void FileWithUsers::saveAllUsersToFile(vector <User> users)
         xml.OutOfElem();
     }
 
-    removeFile("Users.xml");
-    xml.Save("Users.xml");
+    removeFile(FILE_NAME);
+    xml.Save(FILE_NAME);
 }
 
 void FileWithUsers::removeFile(string fileNameWithExtension)
@@ -66,8 +66,11 @@ vector <User> FileWithUsers::loadUsersFromFile()
     CMarkup xml;
     User user;
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
+    {
         cout << "The file is empty!" << endl;
+        system("pause");
+    }
     else
     {
         xml.FindElem("Users");
