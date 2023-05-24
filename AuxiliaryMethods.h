@@ -29,6 +29,7 @@ public:
     static bool isLeapYear(int year);
     static int daysInGivenMonth(int numberOfMonth, int year);
     static string getSpecifiedDate();
+    static string addZeroIfNecessary(int insertedMonth, int insertedDay);
 };
 
 #endif

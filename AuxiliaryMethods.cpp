@@ -198,10 +198,22 @@ string AuxiliaryMethods::getSpecifiedDate()
     }
 
     insertedDate = AuxiliaryMethods::intToStringConversion(insertedYear) + '-'
-                 + AuxiliaryMethods::intToStringConversion(insertedMonth) + '-'
-                 + AuxiliaryMethods::intToStringConversion(insertedDay);
+                 + addZeroIfNecessary(insertedMonth, insertedDay);
 
     return insertedDate;
+}
+
+string AuxiliaryMethods::addZeroIfNecessary(int insertedMonth, int insertedDay)
+{
+    string month{}, day{};
+
+    if(insertedMonth < 10)
+        month = '0' + intToStringConversion(insertedMonth);
+
+    if(insertedDay < 10)
+        day = '0' + intToStringConversion(insertedDay);
+
+    return (month + '-' + day);
 }
 
 bool AuxiliaryMethods::isLeapYear(int year)
