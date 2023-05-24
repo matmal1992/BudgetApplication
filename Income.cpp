@@ -2,7 +2,7 @@
 
 void Income::setIncomeId(int newId)
 {
-    if(incomeId >= 0)
+    if(newId >= 0)
         incomeId = newId;
 }
 

@@ -26,8 +26,6 @@ public:
     void saveIncomeToFile(Income income);
     void setLastIncomeId(vector <Income> incomes);
     int getLastIncomeId();
-    int getNewIncomeId(vector <Income> incomes);
-
 };
 
 #endif

@@ -82,7 +82,7 @@ void BudgetApp::goToUserMenu()
         {
         case '1': operationManager -> addIncome();
             break;
-        case '2': //operationManager -> addExpense();
+        case '2': operationManager -> addExpense();
             break;
         case '3': //operationManager -> displayBalanceOfCurrentMonth();
             break;

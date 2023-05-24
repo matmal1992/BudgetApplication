@@ -1,16 +1,19 @@
 #include "Expense.h"
 
-void Expense::setId(int newId)
+void Expense::setExpenseId(int newId)
 {
-    if(id >= 0)
-        id = newId;
+    if(newId >= 0)
+        expenseId = newId;
 }
 
+void Expense::setUserId(int newUserId) {userId = newUserId;}
 void Expense::setDate(string newDate) {date = newDate;}
 void Expense::setItem(string newItem) {item = newItem;}
-void Expense::setAmount(float newAmount) {amount = newAmount;}
+void Expense::setAmount(string newAmount) {amount = newAmount;}
 
-int Expense::getId() {return id;}
+int Expense::getExpenseId() {return expenseId;}
+int Expense::getUserId() {return userId;}
 string Expense::getDate() {return date;}
 string Expense::getItem() {return item;}
-float Expense::getAmount() {return amount;}
+string Expense::getAmount() {return amount;}
+

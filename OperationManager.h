@@ -18,14 +18,11 @@ class OperationManager
     FileWithExpenses fileWithExpenses;
     const int LOGGED_USER_ID;
 
-    //Income insertDataForNewIncome();
-    Expense insertDataForNewExpense();
-
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {
         incomes = fileWithIncomes.loadIncomesFromFile();
-        //expenses = fileWithExpenses.load...
+        expenses = fileWithExpenses.loadExpensesFromFile();
     }
 
     void addIncome();

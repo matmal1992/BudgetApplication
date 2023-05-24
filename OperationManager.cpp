@@ -40,6 +40,47 @@ void OperationManager::addIncome()
     fileWithIncomes.saveIncomeToFile(income);
 }
 
+void OperationManager::addExpense()
+{
+    Expense expense;
+    char choice{};
+
+    cout << "To add a current expense - press 1." << endl;
+    cout << "To add an expense with specified date - press 2." << endl << endl;
+    choice = AuxiliaryMethods::readChar();
+
+    if(choice != '1' && choice != '2')
+    {
+        cout << "There is no such option!" << endl;
+        system("pause");
+        return;
+    }
+
+    if(choice == '1')
+        expense.setDate(AuxiliaryMethods::getActualDate());
+
+    if(choice == '2')
+    {
+        expense.setDate(AuxiliaryMethods::getSpecifiedDate());
+        if(expense.getDate() == "")
+            return;
+    }
+
+    cout << "Specify type of expense: ";
+    expense.setItem(AuxiliaryMethods::readLine());
+
+    cout << "Insert expense in PLN: ";
+    expense.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
+    if(expense.getAmount() == "")
+        return;
+
+    expense.setExpenseId(fileWithExpenses.getLastExpenseId());
+    expense.setUserId(LOGGED_USER_ID);
+
+    fileWithExpenses.saveExpenseToFile(expense);
+}
+
+
 void OperationManager::displayIncomesData()
 {
     cout << "Vector size: " << incomes.size() << endl;

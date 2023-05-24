@@ -15,17 +15,18 @@ using namespace std;
 class FileWithExpenses
 {
     const string FILE_NAME = "Expenses.xml";
+    int lastExpenseId;
+
 public:
-    /*
-    void addUserToFile(User user);
-    string getFileName();
-    vector <User> loadUsersFromFile();
-    */
+    FileWithExpenses()
+    {
+        lastExpenseId = 0;
+    }
 
-
-
-
-
+    vector <Expense> loadExpensesFromFile();
+    void saveExpenseToFile(Expense expense);
+    void setLastExpenseId(vector <Expense> expense);
+    int getLastExpenseId();
 };
 
 #endif

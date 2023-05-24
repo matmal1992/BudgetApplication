@@ -1,65 +1,86 @@
 #include "FileWithExpenses.h"
-/*
-string FileWithUsers::getFileName()
-{
-    return FILE_NAME;
-}
 
-
-void FileWithUsers::addUserToFile(User user)
+void FileWithExpenses::saveExpenseToFile(Expense expense)
 {
     CMarkup xml;
-    xml.Load("Users.xml");
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Users");
+        xml.AddElem("Expenses");
         xml.IntoElem();
+        xml.AddElem("Expense");
+
+        xml.IntoElem();
+        xml.AddElem("ExpenseId", 1);
+        xml.AddElem("UserId", expense.getUserId());
+        xml.AddElem("Date", expense.getDate());
+        xml.AddElem("Item", expense.getItem());
+        xml.AddElem("Amount", expense.getAmount());
     }
     else
     {
-        xml.FindElem("Users");
+        xml.FindElem("Expenses");
         xml.IntoElem();
         while(xml.FindElem());
+
+        xml.AddElem("Expense");
+        xml.IntoElem();
+        xml.AddElem("ExpenseId", AuxiliaryMethods::intToStringConversion(getLastExpenseId() + 1));
+        xml.AddElem("UserId", expense.getUserId());
+        xml.AddElem("Date", expense.getDate());
+        xml.AddElem("Item", expense.getItem());
+        xml.AddElem("Amount", expense.getAmount());
     }
 
-    xml.AddElem(user.getLogin());
-    xml.IntoElem();
-    xml.AddElem("Id", user.getId());
-    xml.AddElem("Login", user.getLogin());
-    xml.AddElem("Password", user.getPassword());
-
-    xml.Save("Users.xml");
+    xml.Save(FILE_NAME);
 }
 
-vector <User> FileWithUsers::loadUsersFromFile()
+vector <Expense> FileWithExpenses::loadExpensesFromFile()
 {
-    vector <User> users;
+    vector <Expense> expenses;
     CMarkup xml;
-    User user;
+    Expense expense;
 
-    if(!xml.Load("Users.xml"))
+    if(!xml.Load(FILE_NAME))
         cout << "The file is empty!" << endl;
     else
     {
-        xml.FindElem("Users");
+        xml.FindElem("Expenses");
         xml.IntoElem();
-        while(xml.FindElem())
+
+        while(xml.FindElem("Expense"))
         {
             xml.IntoElem();
-            xml.FindElem("Id");
-            user.setId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
-            xml.FindElem("Login");
-            user.setLogin(xml.GetData());
-            xml.FindElem("Password");
-            user.setPassword(xml.GetData());
+
+            xml.FindElem("ExpenseId");
+            expense.setExpenseId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            xml.FindElem("UserId");
+            expense.setUserId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            xml.FindElem("Date");
+            expense.setDate(xml.GetData());
+            xml.FindElem("Item");
+            expense.setItem(xml.GetData());
+            xml.FindElem("Amount");
+            expense.setAmount(xml.GetData());
+
             xml.OutOfElem();
-
-            users.push_back(user);
+            expenses.push_back(expense);
         }
+        setLastExpenseId(expenses);
     }
-
-    return users;
+    return expenses;
 }
-*/
+
+int FileWithExpenses::getLastExpenseId()
+{
+    return lastExpenseId;
+}
+
+void FileWithExpenses::setLastExpenseId(vector <Expense> expenses)
+{
+    if (expenses.empty())
+        lastExpenseId = 1;
+    else
+        lastExpenseId = expenses.back().getExpenseId();
+}

@@ -8,23 +8,23 @@ using namespace std;
 class Expense
 {
     int userId;
-    int id;
+    int expenseId;
     string date;
     string item;
-    float amount;
+    string amount;
 
 public:
-    void setId(int newId);
-    //void setUserId(int userId);
+    void setExpenseId(int newId);
+    void setUserId(int newUserId);
     void setDate(string newDate);
     void setItem(string newItem);
-    void setAmount(float newAmount);
+    void setAmount(string newAmount);
 
-    int getId();
+    int getExpenseId();
     int getUserId();
     string getDate();
     string getItem();
-    float getAmount();
+    string getAmount();
 };
 
 #endif
