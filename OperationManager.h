@@ -31,18 +31,6 @@ public:
     void displayBalanceOfPreviousMonth();
     void displayBalanceOfSelectedMonth();
     void displayBalanceOfSelectedPeriod();
-
-    //
-    void displayIncomesData();
-
-
-
-
-
-
-
-
-
 };
 
 #endif

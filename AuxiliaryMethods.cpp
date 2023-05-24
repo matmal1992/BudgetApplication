@@ -70,21 +70,6 @@ string AuxiliaryMethods::makeFirstLetterCapital(string text)
     return text;
 }
 
-int AuxiliaryMethods::getAddresseeIdFromDataSeparatedByDashes(string addresseeDataSeparatedByDashes)
-{
-    int positionOfBeginingAddresseeId = 0;
-    int addresseeId = stringToIntConversion(readNumber(addresseeDataSeparatedByDashes, positionOfBeginingAddresseeId));
-    return addresseeId;
-}
-
-int AuxiliaryMethods::getUserIdFromDataSeparatedByDashes(string addresseeDataSeparatedByDashes)
-{
-    int positionOfBeginingUserId = addresseeDataSeparatedByDashes.find_first_of('|') + 1;
-    int userId = stringToIntConversion(readNumber(addresseeDataSeparatedByDashes, positionOfBeginingUserId));
-
-    return userId;
-}
-
 int AuxiliaryMethods::readIntiger()
 {
     string input{};
@@ -101,28 +86,13 @@ int AuxiliaryMethods::readIntiger()
     }
     return number;
 }
-int AuxiliaryMethods::insertIdOfSelectedAddressee()
-{
-    int idOfSelectedAddressee = 0;
-    cout << "Insert addressee ID: ";
-    idOfSelectedAddressee  = readIntiger();
-    return idOfSelectedAddressee;
-}
-
-void AuxiliaryMethods::displayAmountOfFoundAddressees(int numberOfAddressees)
-{
-    if (numberOfAddressees == 0)
-        cout << endl << "There are no addressees in your book with such data." << endl;
-    else
-        cout << endl << "Amount of addressees in the book: " << numberOfAddressees << endl << endl;
-}
 
 string AuxiliaryMethods::readInsertedAmountOfMoney()
 {
     string input{};
     input = readLine();
 
-    for(size_t i = 0; i < input.size(); i++)
+    for(size_t i = 0; i < input.size(); ++i)
     {
         if(input[i] == ',')
             input[i] = '.';
@@ -142,8 +112,8 @@ string AuxiliaryMethods::getActualDate()
     string actualDate{};
     string year{}, month{}, day{};
 
-    std::time_t t = std::time(0);
-    std::tm* now = std::localtime(&t);
+    time_t t = time(0);
+    tm* now = localtime(&t);
 
     year = intToStringConversion(now -> tm_year + 1900);
 
@@ -166,40 +136,24 @@ string AuxiliaryMethods::getSpecifiedDate()
     int insertedYear{}, insertedMonth{}, insertedDay{};
     string insertedDate{};
 
-    string actualDate = AuxiliaryMethods::getActualDate();
-    int actualYear = AuxiliaryMethods::stringToIntConversion(actualDate.substr(0, 4));
+    int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
 
     cout << "Enter the year in the range from 2000 to actual: ";
-    insertedYear = AuxiliaryMethods::readIntiger();
-
+    insertedYear = readIntiger();
     if(insertedYear < 2000 || insertedYear > actualYear)
-    {
-        cout << "Entered data is out of range!" << endl;
-        system("pause");
         return "";
-    }
 
     cout << "Enter the month: ";
-    insertedMonth = AuxiliaryMethods::readIntiger();
+    insertedMonth = readIntiger();
     if(insertedMonth < 1 || insertedMonth > 12)
-    {
-        cout << "Entered data is out of range!" << endl;
-        system("pause");
         return "";
-    }
 
     cout << "Enter the day: ";
-    insertedDay = AuxiliaryMethods::readIntiger();
-    if(insertedDay < 1 || insertedDay > AuxiliaryMethods::daysInGivenMonth(insertedMonth, insertedYear))
-    {
-        cout << "Entered day is incorrect!" << endl;
-        system("pause");
+    insertedDay = readIntiger();
+    if(insertedDay < 1 || insertedDay > daysInGivenMonth(insertedMonth, insertedYear))
         return "";
-    }
 
-    insertedDate = AuxiliaryMethods::intToStringConversion(insertedYear) + '-'
-                 + addZeroIfNecessary(insertedMonth, insertedDay);
-
+    insertedDate = intToStringConversion(insertedYear) + '-' + addZeroIfNecessary(insertedMonth, insertedDay);
     return insertedDate;
 }
 

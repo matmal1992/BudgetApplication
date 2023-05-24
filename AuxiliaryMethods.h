@@ -12,24 +12,22 @@ using namespace std;
 
 class AuxiliaryMethods
 {
-public:
-    static string intToStringConversion(int number);
-    static string readLine();
-    static string makeFirstLetterCapital(string text);
-    static int stringToIntConversion(string number);
-    static char readChar();
-    static int getUserIdFromDataSeparatedByDashes(string addresseeDataSeparatedByDashes);
-    static int getAddresseeIdFromDataSeparatedByDashes(string addresseeDataSeparatedByDashes);
-    static string readNumber(string text, int charPosition);
-    static int readIntiger();
-    static int insertIdOfSelectedAddressee();
-    static void displayAmountOfFoundAddressees(int amountOfAddressees);
-    static string readInsertedAmountOfMoney();
-    static string getActualDate();
+    static string addZeroIfNecessary(int insertedMonth, int insertedDay);
     static bool isLeapYear(int year);
     static int daysInGivenMonth(int numberOfMonth, int year);
+public:
+    static string getActualDate();
     static string getSpecifiedDate();
-    static string addZeroIfNecessary(int insertedMonth, int insertedDay);
+
+    static string readInsertedAmountOfMoney();
+    static string readLine();
+    static char readChar();
+    static int readIntiger();
+    static string readNumber(string text, int charPosition);
+
+    static string makeFirstLetterCapital(string text);
+    static int stringToIntConversion(string number);
+    static string intToStringConversion(int number);
 };
 
 #endif

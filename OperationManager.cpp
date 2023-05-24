@@ -23,17 +23,17 @@ void OperationManager::addIncome()
     {
         income.setDate(AuxiliaryMethods::getSpecifiedDate());
         if(income.getDate() == "")
+        {
+            cout << "Inserted data is incorrect." << endl;
+            system("pause");
             return;
+        }
     }
 
     cout << "Specify type of income: ";
     income.setItem(AuxiliaryMethods::readLine());
-
     cout << "Insert income in PLN: ";
     income.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
-    if(income.getAmount() == "")
-        return;
-
     income.setIncomeId(fileWithIncomes.getLastIncomeId());
     income.setUserId(LOGGED_USER_ID);
 
@@ -63,35 +63,19 @@ void OperationManager::addExpense()
     {
         expense.setDate(AuxiliaryMethods::getSpecifiedDate());
         if(expense.getDate() == "")
+        {
+            cout << "Inserted data is incorrect." << endl;
+            system("pause");
             return;
+        }
     }
 
     cout << "Specify type of expense: ";
     expense.setItem(AuxiliaryMethods::readLine());
-
     cout << "Insert expense in PLN: ";
     expense.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
-    if(expense.getAmount() == "")
-        return;
-
     expense.setExpenseId(fileWithExpenses.getLastExpenseId());
     expense.setUserId(LOGGED_USER_ID);
 
     fileWithExpenses.saveExpenseToFile(expense);
-}
-
-
-void OperationManager::displayIncomesData()
-{
-    cout << "Vector size: " << incomes.size() << endl;
-
-    for(vector <Income>::iterator itr = incomes.begin(); itr != incomes.end(); ++itr)
-    {
-        cout << "UserId: " << itr -> getUserId() << endl;
-        cout << "IncomeId: " << itr -> getIncomeId() << endl;
-        cout << "Date: " << itr -> getDate() << endl;
-        cout << "Item: " << itr -> getItem() << endl;
-        cout << "Amount: " << itr -> getAmount() << endl << endl;
-    }
-    system("pause");
 }

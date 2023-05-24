@@ -31,14 +31,8 @@ public:
     int getNewUserId();
     bool checkIfLoginExists(string login);
     int getLoggedUserId();
-    void displayUsersData();
     bool checkIfUserIsLogged();
     void changePasswordOfLoggedUser();
-
-
-
-
-
 };
 
 #endif

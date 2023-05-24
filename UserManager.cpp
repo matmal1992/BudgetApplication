@@ -20,7 +20,7 @@ User UserManager::insertDataForNewUser()
     do
     {
         cout << "Insert login: ";
-        login = AuxiliaryMethods::readLine(); //login empty user!!!!!!!!!!!!!!!!=================================
+        login = AuxiliaryMethods::readLine();
         user.setLogin(login);
     } while (checkIfLoginExists(user.getLogin()));
 
@@ -49,6 +49,13 @@ bool UserManager::checkIfLoginExists(string login)
             return true;
         }
     }
+
+    if(login == "")
+    {
+        cout << "Nothing has been inserted." << endl;
+        return true;
+    }
+
     return false;
 }
 
@@ -129,17 +136,6 @@ void UserManager::logOutUser()
     loggedUserId = 0;
 }
 
-void UserManager::displayUsersData()
-{
-    cout << "Vector size: " << users.size() << endl;
-
-    for(vector <User>::iterator itr = users.begin(); itr != users.end(); ++itr)
-    {
-        cout << "Login: " << itr -> getLogin() << endl;
-        cout << "Password: " << itr -> getPassword() << endl;
-        cout << "ID: " << itr -> getId() << endl << endl;
-    }
-}
 
 
 
