@@ -26,6 +26,9 @@ public:
     static void displayAmountOfFoundAddressees(int amountOfAddressees);
     static string readInsertedAmountOfMoney();
     static string getActualDate();
+    static bool isLeapYear(int year);
+    static int daysInGivenMonth(int numberOfMonth, int year);
+    static string getSpecifiedDate();
 };
 
 #endif
