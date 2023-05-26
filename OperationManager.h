@@ -7,6 +7,7 @@
 #include "FileWithExpenses.h"
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -18,6 +19,13 @@ class OperationManager
     FileWithExpenses fileWithExpenses;
     const int LOGGED_USER_ID;
 
+    vector <Income> displayIncomes(string periodOfTime);
+    vector <Expense> displayExpenses(string periodOfTime);
+    void incomesMinusExpenses(vector <Income> incomes, vector <Expense> expenses);
+    template <typename T> void sortByDate(vector <T> &operations);
+    template <typename T> void displayOperations(vector <T> &operations);
+    template <typename T> vector <T> getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime);
+
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {
@@ -27,10 +35,7 @@ public:
 
     void addIncome();
     void addExpense();
-    void displayBalanceOfCurrentMonth();
-    void displayBalanceOfPreviousMonth();
-    void displayBalanceOfSelectedMonth();
-    void displayBalanceOfSelectedPeriod();
+    void displayBalance(string periodOfTime);
 };
 
 #endif

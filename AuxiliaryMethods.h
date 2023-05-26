@@ -17,6 +17,7 @@ class AuxiliaryMethods
     static int daysInGivenMonth(int numberOfMonth, int year);
 public:
     static string getActualDate();
+    static string getActualMonthTimespan();
     static string getSpecifiedDate();
 
     static string readInsertedAmountOfMoney();
@@ -28,6 +29,7 @@ public:
     static string makeFirstLetterCapital(string text);
     static int stringToIntConversion(string number);
     static string intToStringConversion(int number);
+    static int convertStringDateIntoInt(string date);
 };
 
 #endif

@@ -131,12 +131,35 @@ string AuxiliaryMethods::getActualDate()
     return actualDate;
 }
 
+string AuxiliaryMethods::getActualMonthTimespan()
+{
+    string firstDay{}, lastDay{}, periodOfTime{};
+    string actualYear = getActualDate().substr(0, 4);
+    string actualMonth = getActualDate().substr(5, 2);
+
+    int actualYearInt = stringToIntConversion(actualYear);
+    int actualMonthInt = stringToIntConversion(actualMonth);
+
+    firstDay = actualYear + "-"
+             + actualMonth + "-"
+             + "01";
+
+    lastDay = actualYear + "-"
+            + actualMonth + "-"
+            + intToStringConversion(daysInGivenMonth(actualMonthInt, actualYearInt));
+
+    periodOfTime = firstDay + "_" + lastDay;
+
+    return periodOfTime;
+}
+
 string AuxiliaryMethods::getSpecifiedDate()
 {
     int insertedYear{}, insertedMonth{}, insertedDay{};
     string insertedDate{};
 
     int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
+    int actualMonth = stringToIntConversion(getActualDate().substr(5, 2));
 
     cout << "Enter the year in the range from 2000 to actual: ";
     insertedYear = readIntiger();
@@ -145,7 +168,7 @@ string AuxiliaryMethods::getSpecifiedDate()
 
     cout << "Enter the month: ";
     insertedMonth = readIntiger();
-    if(insertedMonth < 1 || insertedMonth > 12)
+    if((insertedMonth < 1 || insertedMonth > 12) || (insertedYear == actualYear && insertedMonth > actualMonth))
         return "";
 
     cout << "Enter the day: ";
@@ -202,5 +225,15 @@ int AuxiliaryMethods::daysInGivenMonth(int numberOfMonth, int year)
     return 0;
 }
 
+int AuxiliaryMethods::convertStringDateIntoInt(string date)
+{
+    int intDate{};
+    string dateWithoutDashes{};
+
+    dateWithoutDashes = date.substr(0, 4) + date.substr(5, 2) + date.substr(8, 2);
+    intDate = stringToIntConversion(dateWithoutDashes);
+
+    return intDate;
+}
 
 
