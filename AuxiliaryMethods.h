@@ -19,6 +19,7 @@ public:
     static string getActualDate();
     static string getActualMonthTimespan();
     static string getPreviousMonthTimespan();
+    static string getSelectedMonthTimespan();
     static string getSpecifiedDate();
 
     static string readInsertedAmountOfMoney();

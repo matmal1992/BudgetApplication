@@ -20,15 +20,7 @@ void OperationManager::addIncome()
         income.setDate(AuxiliaryMethods::getActualDate());
 
     if(choice == '2')
-    {
         income.setDate(AuxiliaryMethods::getSpecifiedDate());
-        if(income.getDate() == "")
-        {
-            cout << "Inserted data is incorrect." << endl;
-            system("pause");
-            return;
-        }
-    }
 
     cout << "Specify type of income: ";
     income.setItem(AuxiliaryMethods::readLine());
@@ -60,15 +52,7 @@ void OperationManager::addExpense()
         expense.setDate(AuxiliaryMethods::getActualDate());
 
     if(choice == '2')
-    {
         expense.setDate(AuxiliaryMethods::getSpecifiedDate());
-        if(expense.getDate() == "")
-        {
-            cout << "Inserted data is incorrect." << endl;
-            system("pause");
-            return;
-        }
-    }
 
     cout << "Specify type of expense: ";
     expense.setItem(AuxiliaryMethods::readLine());
@@ -92,8 +76,7 @@ void OperationManager::displayBalance(string periodOfTime)
     system("pause");
 }
 
-template <typename T>
-vector <T> OperationManager::getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime)
+template <typename T> vector <T> OperationManager::getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime)
 {
     vector <T> tmpOperations;
     string firstDay{}, lastDay{};
@@ -143,8 +126,7 @@ vector <Expense> OperationManager::displayExpenses(string periodOfTime)
     return tmpExpenses;
 }
 
-template <typename T>
-void OperationManager::sortByDate(vector<T> &operations)
+template <typename T> void OperationManager::sortByDate(vector<T> &operations)
 {
     sort(operations.begin(), operations.end(), [](T &lhs, T &rhs)
     {
@@ -152,8 +134,7 @@ void OperationManager::sortByDate(vector<T> &operations)
     });
 }
 
-template <typename T>
-void OperationManager::displayOperations(vector <T> &operations)
+template <typename T> void OperationManager::displayOperations(vector <T> &operations)
 {
     cout << "DATE\t\tITEM\tAmount" << endl << endl;
     for(auto it = operations.begin(); it < operations.end(); ++it)

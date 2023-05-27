@@ -88,7 +88,7 @@ void BudgetApp::goToUserMenu()
             break;
         case '4': operationManager -> displayBalance(AuxiliaryMethods::getPreviousMonthTimespan());
             break;
-        case '5': //operationManager -> displayBalanceOfSelectedMonth();
+        case '5': operationManager -> displayBalance(AuxiliaryMethods::getSelectedMonthTimespan());
             break;
         case '6': //operationManager -> displayBalanceOfSelectedPeriod();
             break;
