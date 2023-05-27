@@ -21,6 +21,10 @@ public:
     static string getPreviousMonthTimespan();
     static string getSelectedMonthTimespan();
     static string getSpecifiedDate();
+    static string getSelectedTimePeriod();
+    static int insertYear();
+    static int insertMonth(int insertedYear);
+    static int insertDay(int insertedMonth, int insertedYear);
 
     static string readInsertedAmountOfMoney();
     static string readLine();

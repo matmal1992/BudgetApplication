@@ -131,13 +131,10 @@ string AuxiliaryMethods::getActualDate()
     return actualDate;
 }
 
-string AuxiliaryMethods::getSelectedMonthTimespan()
+int AuxiliaryMethods::insertYear()
 {
-    int insertedYear{}, insertedMonth{}, dayInt{};
-    string firstDay{}, lastDay{}, periodOfTime{};
-
+    int insertedYear{};
     int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
-    int actualMonth = stringToIntConversion(getActualDate().substr(5, 2));
 
     cout << "Enter the year in the range from 2000 to actual: ";
     insertedYear = readIntiger();
@@ -148,6 +145,15 @@ string AuxiliaryMethods::getSelectedMonthTimespan()
         insertedYear = readIntiger();
     }
 
+    return insertedYear;
+}
+
+int AuxiliaryMethods::insertMonth(int insertedYear)
+{
+    int insertedMonth{};
+    int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
+    int actualMonth = stringToIntConversion(getActualDate().substr(5, 2));
+
     cout << "Enter the month: ";
     insertedMonth = readIntiger();
 
@@ -157,12 +163,76 @@ string AuxiliaryMethods::getSelectedMonthTimespan()
         insertedMonth = readIntiger();
     }
 
+    return insertedMonth;
+}
+
+int AuxiliaryMethods::insertDay(int insertedMonth, int insertedYear)
+{
+    int insertedDay{};
+
+    cout << "Enter the day: ";
+    insertedDay = readIntiger();
+
+    while(insertedDay < 1 || insertedDay > daysInGivenMonth(insertedMonth, insertedYear))
+    {
+        cout << "You inserted invalid data! Try again: ";
+        insertedDay = readIntiger();
+    }
+
+    return insertedDay;
+}
+
+string AuxiliaryMethods::getSelectedMonthTimespan()
+{
+    int insertedYear{}, insertedMonth{}, dayInt{};
+    string firstDay{}, lastDay{}, periodOfTime{};
+
+    insertedYear = insertYear();
+    insertedMonth = insertMonth(insertedYear);
+
     dayInt = daysInGivenMonth(insertedMonth, insertedYear);
 
     firstDay = intToStringConversion(insertedYear) + "-" + addZeroIfNecessary(insertedMonth) + "-" + "01";
     lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
 
     periodOfTime = firstDay + "_" + lastDay;
+
+    return periodOfTime;
+}
+
+string AuxiliaryMethods::getSelectedTimePeriod()
+{
+    int firstDay{}, firstMonth{}, firstYear{};
+    int lastDay{}, lastMonth{}, lastYear{};
+
+    string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
+
+    do
+    {
+        cout << "Specify the beginning of the time period: " << endl;
+        firstYear = insertYear();
+        firstMonth = insertMonth(firstYear);
+        firstDay = insertDay(firstMonth, firstYear);
+
+        cout << "Specify the end of the time period: " << endl;
+        lastYear = insertYear();
+        lastMonth = insertMonth(lastYear);
+        lastDay = insertDay(lastMonth, lastYear);
+
+        beginOfPeriod = intToStringConversion(firstYear)+ "-"
+                      + addZeroIfNecessary(firstMonth) + "-"
+                      + addZeroIfNecessary(firstDay);
+
+        endOfPeriod = intToStringConversion(lastYear)+ "-"
+                      + addZeroIfNecessary(lastMonth) + "-"
+                      + addZeroIfNecessary(lastDay);
+
+        if(beginOfPeriod > endOfPeriod)
+            cout << "Begin of the time period must be older than the end!" << endl;
+
+    }while(beginOfPeriod > endOfPeriod);
+
+    periodOfTime = beginOfPeriod + "_" + endOfPeriod;
 
     return periodOfTime;
 }
@@ -219,34 +289,9 @@ string AuxiliaryMethods::getSpecifiedDate()
     int insertedYear{}, insertedMonth{}, insertedDay{};
     string insertedDate{};
 
-    int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
-    int actualMonth = stringToIntConversion(getActualDate().substr(5, 2));
-
-    cout << "Enter the year in the range from 2000 to actual: ";
-    insertedYear = readIntiger();
-
-    while(insertedYear < 2000 || insertedYear > actualYear)
-    {
-        cout << "You inserted invalid data! Try again: ";
-        insertedYear = readIntiger();
-    }
-
-    cout << "Enter the month: ";
-    insertedMonth = readIntiger();
-
-    while( (insertedMonth < 1 || insertedMonth > 12) || (insertedYear == actualYear && insertedMonth > actualMonth))
-    {
-        cout << "You inserted invalid data! Try again: ";
-        insertedMonth = readIntiger();
-    }
-
-    cout << "Enter the day: ";
-    insertedDay = readIntiger();
-    while(insertedDay < 1 || insertedDay > daysInGivenMonth(insertedMonth, insertedYear))  //try function templates
-    {
-        cout << "You inserted invalid data! Try again: ";
-        insertedMonth = readIntiger();
-    }
+    insertedYear = insertYear();
+    insertedMonth = insertMonth(insertedYear);
+    insertedDay = insertDay(insertedMonth, insertedYear);
 
     insertedDate = intToStringConversion(insertedYear) + '-'
                  + addZeroIfNecessary(insertedMonth) + '-'
@@ -257,12 +302,12 @@ string AuxiliaryMethods::getSpecifiedDate()
 
 string AuxiliaryMethods::addZeroIfNecessary(int insertedDayOrMonth)
 {
-    string dayOrMonth{};
+    string number{};
 
     if(insertedDayOrMonth < 10)
-        dayOrMonth = '0' + intToStringConversion(insertedDayOrMonth);
+        number = '0' + intToStringConversion(insertedDayOrMonth);
 
-    return dayOrMonth;
+    return number;
 }
 
 bool AuxiliaryMethods::isLeapYear(int year)

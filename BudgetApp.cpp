@@ -90,7 +90,7 @@ void BudgetApp::goToUserMenu()
             break;
         case '5': operationManager -> displayBalance(AuxiliaryMethods::getSelectedMonthTimespan());
             break;
-        case '6': //operationManager -> displayBalanceOfSelectedPeriod();
+        case '6': operationManager -> displayBalance(AuxiliaryMethods::getSelectedTimePeriod());
             break;
         case '7': userManager.changePasswordOfLoggedUser();
             break;
