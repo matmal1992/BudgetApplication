@@ -12,12 +12,13 @@ using namespace std;
 
 class AuxiliaryMethods
 {
-    static string addZeroIfNecessary(int insertedMonth, int insertedDay);
+    static string addZeroIfNecessary(int insertedMonthOrDay);
     static bool isLeapYear(int year);
     static int daysInGivenMonth(int numberOfMonth, int year);
 public:
     static string getActualDate();
     static string getActualMonthTimespan();
+    static string getPreviousMonthTimespan();
     static string getSpecifiedDate();
 
     static string readInsertedAmountOfMoney();

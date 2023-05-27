@@ -131,22 +131,47 @@ string AuxiliaryMethods::getActualDate()
     return actualDate;
 }
 
+string AuxiliaryMethods::getPreviousMonthTimespan()
+{
+    string firstDay{}, lastDay{}, periodOfTime{};
+    string actualYear = getActualDate().substr(0, 4);
+    string actualMonth = getActualDate().substr(5, 2);
+
+    int yearInt{}, monthInt{}, dayInt{};
+
+    if(actualMonth == "01")
+    {
+        yearInt = stringToIntConversion(actualYear) - 1;
+        monthInt = 12;
+    }
+    else
+    {
+        yearInt = stringToIntConversion(actualYear);
+        monthInt = stringToIntConversion(actualMonth) - 1;
+    }
+
+    dayInt = daysInGivenMonth(monthInt, yearInt);
+
+    firstDay = intToStringConversion(yearInt) + "-" + addZeroIfNecessary(monthInt) + "-" + "01";
+    lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
+
+    periodOfTime = firstDay + "_" + lastDay;
+
+    return periodOfTime;
+}
+
 string AuxiliaryMethods::getActualMonthTimespan()
 {
     string firstDay{}, lastDay{}, periodOfTime{};
     string actualYear = getActualDate().substr(0, 4);
     string actualMonth = getActualDate().substr(5, 2);
 
-    int actualYearInt = stringToIntConversion(actualYear);
-    int actualMonthInt = stringToIntConversion(actualMonth);
+    int yearInt = stringToIntConversion(actualYear);
+    int monthInt = stringToIntConversion(actualMonth);
+    int dayInt = daysInGivenMonth(monthInt, yearInt);
 
-    firstDay = actualYear + "-"
-             + actualMonth + "-"
-             + "01";
-
-    lastDay = actualYear + "-"
-            + actualMonth + "-"
-            + intToStringConversion(daysInGivenMonth(actualMonthInt, actualYearInt));
+    firstDay = actualYear + "-" + actualMonth + "-" + "01";
+    lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
 
     periodOfTime = firstDay + "_" + lastDay;
 
@@ -176,21 +201,21 @@ string AuxiliaryMethods::getSpecifiedDate()
     if(insertedDay < 1 || insertedDay > daysInGivenMonth(insertedMonth, insertedYear))
         return "";
 
-    insertedDate = intToStringConversion(insertedYear) + '-' + addZeroIfNecessary(insertedMonth, insertedDay);
+    insertedDate = intToStringConversion(insertedYear) + '-'
+                 + addZeroIfNecessary(insertedMonth) + '-'
+                 + addZeroIfNecessary(insertedDay);
+
     return insertedDate;
 }
 
-string AuxiliaryMethods::addZeroIfNecessary(int insertedMonth, int insertedDay)
+string AuxiliaryMethods::addZeroIfNecessary(int insertedDayOrMonth)
 {
-    string month{}, day{};
+    string dayOrMonth{};
 
-    if(insertedMonth < 10)
-        month = '0' + intToStringConversion(insertedMonth);
+    if(insertedDayOrMonth < 10)
+        dayOrMonth = '0' + intToStringConversion(insertedDayOrMonth);
 
-    if(insertedDay < 10)
-        day = '0' + intToStringConversion(insertedDay);
-
-    return (month + '-' + day);
+    return dayOrMonth;
 }
 
 bool AuxiliaryMethods::isLeapYear(int year)

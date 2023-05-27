@@ -92,24 +92,22 @@ void OperationManager::displayBalance(string periodOfTime)
     system("pause");
 }
 
-template <typename T> vector <T> OperationManager::getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime)
+template <typename T>
+vector <T> OperationManager::getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime)
 {
     vector <T> tmpOperations;
-    int firstDay{}, lastDay{};
-    int dateAsIntiger{};
+    string firstDay{}, lastDay{};
 
-    //periodOfTime has following format: YYYY-MM-DD_YYYY-MM-DD
+    //periodOfTime has a following format: YYYY-MM-DD_YYYY-MM-DD
 
-    firstDay = AuxiliaryMethods::convertStringDateIntoInt(periodOfTime.substr(0, 10));
-    lastDay = AuxiliaryMethods::convertStringDateIntoInt(periodOfTime.substr(11, 10));
+    firstDay = periodOfTime.substr(0, 10);
+    lastDay = periodOfTime.substr(11, 10);
 
     for(auto it = operations.begin(); it < operations.end(); ++it)
     {
         if(it -> getUserId() == LOGGED_USER_ID)
         {
-            dateAsIntiger = AuxiliaryMethods::convertStringDateIntoInt(it -> getDate());
-
-            if(dateAsIntiger > firstDay && dateAsIntiger < lastDay)
+            if( (it -> getDate() >= firstDay) && (it -> getDate() <= lastDay) )
                 tmpOperations.push_back(*it);
         }
     }
@@ -145,7 +143,8 @@ vector <Expense> OperationManager::displayExpenses(string periodOfTime)
     return tmpExpenses;
 }
 
-template <typename T> void OperationManager::sortByDate(vector<T> &operations)
+template <typename T>
+void OperationManager::sortByDate(vector<T> &operations)
 {
     sort(operations.begin(), operations.end(), [](T &lhs, T &rhs)
     {
@@ -153,7 +152,8 @@ template <typename T> void OperationManager::sortByDate(vector<T> &operations)
     });
 }
 
-template <typename T> void OperationManager::displayOperations(vector <T> &operations)
+template <typename T>
+void OperationManager::displayOperations(vector <T> &operations)
 {
     cout << "DATE\t\tITEM\tAmount" << endl << endl;
     for(auto it = operations.begin(); it < operations.end(); ++it)
