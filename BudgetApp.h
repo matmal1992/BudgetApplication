@@ -14,8 +14,6 @@ class BudgetApp
     OperationManager *operationManager;
 
 public:
-    //BudgetApp(): {}
-
     ~BudgetApp()
     {
         delete operationManager;

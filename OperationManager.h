@@ -26,6 +26,8 @@ class OperationManager
     template <typename T> void displayOperations(vector <T> &operations);
     template <typename T> vector <T> getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime);
 
+    template <typename T> T executeOperation(T ops);
+
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {

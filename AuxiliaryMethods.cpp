@@ -49,27 +49,6 @@ char AuxiliaryMethods::readChar()
     return character;
 }
 
-string AuxiliaryMethods::readNumber(string text, int charPosition)
-{
-    string number{};
-    while(isdigit(text[charPosition]))
-    {
-        number += text[charPosition];
-        charPosition ++;
-    }
-    return number;
-}
-
-string AuxiliaryMethods::makeFirstLetterCapital(string text)
-{
-    if (!text.empty())
-    {
-        transform(text.begin(), text.end(), text.begin(), ::tolower);
-        text[0] = toupper(text[0]);
-    }
-    return text;
-}
-
 int AuxiliaryMethods::readIntiger()
 {
     string input{};
@@ -90,20 +69,43 @@ int AuxiliaryMethods::readIntiger()
 string AuxiliaryMethods::readInsertedAmountOfMoney()
 {
     string input{};
-    input = readLine();
+    int amountOfDots{};
 
-    for(size_t i = 0; i < input.size(); ++i)
+    do
     {
-        if(input[i] == ',')
-            input[i] = '.';
+        input = readLine();
 
-        if(!isdigit(input[i]) && input[i] != '.')
+        if(!isdigit(input[0]))
         {
-            cout << "Invalid format. The correct format is: 1220.40" << endl;
-            system("pause");
-            return "";
+            cout << "Invalid format. The correct format is: 1220.40. Try again: " << endl;
+            input = "";
         }
-    }
+
+        for(size_t i = 0; i < input.size(); ++i)
+        {
+            if(input[i] == ',')
+                input[i] = '.';
+
+            if(input[i] == '.')
+                amountOfDots++;
+
+            if(amountOfDots > 1)
+            {
+                cout << "Invalid format. The correct format is: 1220.40. Try again: " << endl;
+                input = "";
+                amountOfDots = 0;
+                break;
+            }
+
+            if(!isdigit(input[i]) && input[i] != '.')
+            {
+                cout << "Invalid format. The correct format is: 1220.40. Try again: " << endl;
+                input = "";
+                break;
+            }
+        }
+    }while(input == "");
+
     return input;
 }
 
@@ -133,19 +135,19 @@ string AuxiliaryMethods::getActualDate()
 
 int AuxiliaryMethods::insertYear()
 {
-    int insertedYear{};
+    int year{};
     int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
 
     cout << "Enter the year in the range from 2000 to actual: ";
-    insertedYear = readIntiger();
+    year = readIntiger();
 
-    while(insertedYear < 2000 || insertedYear > actualYear)
+    while(year < 2000 || year > actualYear)
     {
         cout << "You inserted invalid data! Try again: ";
-        insertedYear = readIntiger();
+        year = readIntiger();
     }
 
-    return insertedYear;
+    return year;
 }
 
 int AuxiliaryMethods::insertMonth(int insertedYear)
@@ -168,64 +170,60 @@ int AuxiliaryMethods::insertMonth(int insertedYear)
 
 int AuxiliaryMethods::insertDay(int insertedMonth, int insertedYear)
 {
-    int insertedDay{};
+    int day{};
 
     cout << "Enter the day: ";
-    insertedDay = readIntiger();
+    day = readIntiger();
 
-    while(insertedDay < 1 || insertedDay > daysInGivenMonth(insertedMonth, insertedYear))
+    while(day < 1 || day > daysInGivenMonth(insertedMonth, insertedYear))
     {
         cout << "You inserted invalid data! Try again: ";
-        insertedDay = readIntiger();
+        day = readIntiger();
     }
 
-    return insertedDay;
+    return day;
 }
 
 string AuxiliaryMethods::getSelectedMonthTimespan()
 {
-    int insertedYear{}, insertedMonth{}, dayInt{};
-    string firstDay{}, lastDay{}, periodOfTime{};
+    int year{}, month{}, day{};
+    string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
 
-    insertedYear = insertYear();
-    insertedMonth = insertMonth(insertedYear);
+    year = insertYear();
+    month = insertMonth(year);
+    day = daysInGivenMonth(month, year);
 
-    dayInt = daysInGivenMonth(insertedMonth, insertedYear);
+    beginOfPeriod = intToStringConversion(year) + "-" + addZeroIfNecessary(month) + "-" + "01";
+    endOfPeriod = beginOfPeriod.substr(0, 8) + intToStringConversion(day);
 
-    firstDay = intToStringConversion(insertedYear) + "-" + addZeroIfNecessary(insertedMonth) + "-" + "01";
-    lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
-
-    periodOfTime = firstDay + "_" + lastDay;
-
+    periodOfTime = beginOfPeriod + "_" + endOfPeriod;
     return periodOfTime;
+}
+
+string AuxiliaryMethods::specifyExactDate()
+{
+    string date{};
+    int day{}, month{}, year{};
+
+    year = insertYear();
+    month = insertMonth(year);
+    day = insertDay(month, year);
+
+    date = intToStringConversion(year)+ "-" + addZeroIfNecessary(month) + "-" + addZeroIfNecessary(day);
+    return date;
 }
 
 string AuxiliaryMethods::getSelectedTimePeriod()
 {
-    int firstDay{}, firstMonth{}, firstYear{};
-    int lastDay{}, lastMonth{}, lastYear{};
-
     string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
 
     do
     {
         cout << "Specify the beginning of the time period: " << endl;
-        firstYear = insertYear();
-        firstMonth = insertMonth(firstYear);
-        firstDay = insertDay(firstMonth, firstYear);
+        beginOfPeriod = specifyExactDate();
 
         cout << "Specify the end of the time period: " << endl;
-        lastYear = insertYear();
-        lastMonth = insertMonth(lastYear);
-        lastDay = insertDay(lastMonth, lastYear);
-
-        beginOfPeriod = intToStringConversion(firstYear)+ "-"
-                      + addZeroIfNecessary(firstMonth) + "-"
-                      + addZeroIfNecessary(firstDay);
-
-        endOfPeriod = intToStringConversion(lastYear)+ "-"
-                      + addZeroIfNecessary(lastMonth) + "-"
-                      + addZeroIfNecessary(lastDay);
+        endOfPeriod = specifyExactDate();
 
         if(beginOfPeriod > endOfPeriod)
             cout << "Begin of the time period must be older than the end!" << endl;
@@ -239,7 +237,8 @@ string AuxiliaryMethods::getSelectedTimePeriod()
 
 string AuxiliaryMethods::getPreviousMonthTimespan()
 {
-    string firstDay{}, lastDay{}, periodOfTime{};
+    string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
+
     string actualYear = getActualDate().substr(0, 4);
     string actualMonth = getActualDate().substr(5, 2);
 
@@ -258,17 +257,18 @@ string AuxiliaryMethods::getPreviousMonthTimespan()
 
     dayInt = daysInGivenMonth(monthInt, yearInt);
 
-    firstDay = intToStringConversion(yearInt) + "-" + addZeroIfNecessary(monthInt) + "-" + "01";
-    lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
+    beginOfPeriod = intToStringConversion(yearInt) + "-" + addZeroIfNecessary(monthInt) + "-" + "01";
+    endOfPeriod = beginOfPeriod.substr(0, 8) + intToStringConversion(dayInt);
 
-    periodOfTime = firstDay + "_" + lastDay;
+    periodOfTime = beginOfPeriod + "_" + endOfPeriod;
 
     return periodOfTime;
 }
 
 string AuxiliaryMethods::getActualMonthTimespan()
 {
-    string firstDay{}, lastDay{}, periodOfTime{};
+    string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
+
     string actualYear = getActualDate().substr(0, 4);
     string actualMonth = getActualDate().substr(5, 2);
 
@@ -276,28 +276,12 @@ string AuxiliaryMethods::getActualMonthTimespan()
     int monthInt = stringToIntConversion(actualMonth);
     int dayInt = daysInGivenMonth(monthInt, yearInt);
 
-    firstDay = actualYear + "-" + actualMonth + "-" + "01";
-    lastDay = firstDay.substr(0, 8) + intToStringConversion(dayInt);
+    beginOfPeriod = actualYear + "-" + actualMonth + "-" + "01";
+    endOfPeriod = beginOfPeriod.substr(0, 8) + intToStringConversion(dayInt);
 
-    periodOfTime = firstDay + "_" + lastDay;
+    periodOfTime = beginOfPeriod + "_" + endOfPeriod;
 
     return periodOfTime;
-}
-
-string AuxiliaryMethods::getSpecifiedDate()
-{
-    int insertedYear{}, insertedMonth{}, insertedDay{};
-    string insertedDate{};
-
-    insertedYear = insertYear();
-    insertedMonth = insertMonth(insertedYear);
-    insertedDay = insertDay(insertedMonth, insertedYear);
-
-    insertedDate = intToStringConversion(insertedYear) + '-'
-                 + addZeroIfNecessary(insertedMonth) + '-'
-                 + addZeroIfNecessary(insertedDay);
-
-    return insertedDate;
 }
 
 string AuxiliaryMethods::addZeroIfNecessary(int insertedDayOrMonth)
@@ -341,16 +325,4 @@ int AuxiliaryMethods::daysInGivenMonth(int numberOfMonth, int year)
     }
     return 0;
 }
-
-int AuxiliaryMethods::convertStringDateIntoInt(string date)
-{
-    int intDate{};
-    string dateWithoutDashes{};
-
-    dateWithoutDashes = date.substr(0, 4) + date.substr(5, 2) + date.substr(8, 2);
-    intDate = stringToIntConversion(dateWithoutDashes);
-
-    return intDate;
-}
-
 

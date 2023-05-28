@@ -10,28 +10,23 @@ void FileWithIncomes::saveIncomeToFile(Income income)
         xml.AddElem("Incomes");
         xml.IntoElem();
         xml.AddElem("Income");
-
         xml.IntoElem();
         xml.AddElem("IncomeId", 1);
-        xml.AddElem("UserId", income.getUserId());
-        xml.AddElem("Date", income.getDate());
-        xml.AddElem("Item", income.getItem());
-        xml.AddElem("Amount", income.getAmount());
     }
     else
     {
         xml.FindElem("Incomes");
         xml.IntoElem();
         while(xml.FindElem());
-
         xml.AddElem("Income");
         xml.IntoElem();
         xml.AddElem("IncomeId", AuxiliaryMethods::intToStringConversion(getLastIncomeId() + 1));
-        xml.AddElem("UserId", income.getUserId());
-        xml.AddElem("Date", income.getDate());
-        xml.AddElem("Item", income.getItem());
-        xml.AddElem("Amount", income.getAmount());
     }
+
+    xml.AddElem("UserId", income.getUserId());
+    xml.AddElem("Date", income.getDate());
+    xml.AddElem("Item", income.getItem());
+    xml.AddElem("Amount", income.getAmount());
 
     xml.Save(FILE_NAME);
 }

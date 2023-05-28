@@ -10,28 +10,23 @@ void FileWithExpenses::saveExpenseToFile(Expense expense)
         xml.AddElem("Expenses");
         xml.IntoElem();
         xml.AddElem("Expense");
-
         xml.IntoElem();
         xml.AddElem("ExpenseId", 1);
-        xml.AddElem("UserId", expense.getUserId());
-        xml.AddElem("Date", expense.getDate());
-        xml.AddElem("Item", expense.getItem());
-        xml.AddElem("Amount", expense.getAmount());
     }
     else
     {
         xml.FindElem("Expenses");
         xml.IntoElem();
         while(xml.FindElem());
-
         xml.AddElem("Expense");
         xml.IntoElem();
         xml.AddElem("ExpenseId", AuxiliaryMethods::intToStringConversion(getLastExpenseId() + 1));
-        xml.AddElem("UserId", expense.getUserId());
-        xml.AddElem("Date", expense.getDate());
-        xml.AddElem("Item", expense.getItem());
-        xml.AddElem("Amount", expense.getAmount());
     }
+
+    xml.AddElem("UserId", expense.getUserId());
+    xml.AddElem("Date", expense.getDate());
+    xml.AddElem("Item", expense.getItem());
+    xml.AddElem("Amount", expense.getAmount());
 
     xml.Save(FILE_NAME);
 }
