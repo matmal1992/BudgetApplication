@@ -3,40 +3,28 @@
 void OperationManager::addIncome()
 {
     Income income;
-    char choice{};
 
     cout << "To add a current income - press 1." << endl;
     cout << "To add an income with specified date - press 2." << endl << endl;
 
-    //income = executeOperation(income);
-
-
-    choice = AuxiliaryMethods::readChar();
-
-    while(choice != '1' && choice != '2')
-    {
-        cout << "There is no such option! Try again: " << endl;
-        choice = AuxiliaryMethods::readChar();
-    }
-
-    if(choice == '1')
-        income.setDate(AuxiliaryMethods::getActualDate());
-
-    if(choice == '2')
-        income.setDate(AuxiliaryMethods::specifyExactDate());
-
-    cout << "Specify type of income: ";
-    income.setItem(AuxiliaryMethods::readLine());
-    cout << "Insert income in PLN: ";
-    income.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
-    income.setIncomeId(fileWithIncomes.getLastIncomeId());
-    income.setUserId(LOGGED_USER_ID);
-
+    income = executeOperation(income);
 
     fileWithIncomes.saveIncomeToFile(income);
 }
 
-template <typename T> T OperationManager::executeOperation(T ops)
+void OperationManager::addExpense()
+{
+    Expense expense;
+
+    cout << "To add a current expense - press 1." << endl;
+    cout << "To add an expense with specified date - press 2." << endl << endl;
+
+    expense = executeOperation(expense);
+
+    fileWithExpenses.saveExpenseToFile(expense);
+}
+
+template <typename T> T OperationManager::executeOperation(T incomeOrExpense)
 {
     T operation;
     char choice{};
@@ -58,47 +46,12 @@ template <typename T> T OperationManager::executeOperation(T ops)
     cout << "Specify type (RTV, media, salary, etc.): ";
     operation.setItem(AuxiliaryMethods::readLine());
     cout << "Insert amount in PLN: ";
-    operation.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
+    operation.setAmount(AuxiliaryMethods::readFloat());
     cout << "Money has been added" << endl;
-    operation.setExpenseId(fileWithExpenses.getLastExpenseId()); //set operationId i bedzie ok
+    operation.setOperationId(fileWithExpenses.getLastExpenseId());
     operation.setUserId(LOGGED_USER_ID);
 
     return operation;
-}
-
-void OperationManager::addExpense()
-{
-    Expense expense;
-    char choice{};
-
-    cout << "To add a current expense - press 1." << endl;
-    cout << "To add an expense with specified date - press 2." << endl << endl;
-
-    expense = executeOperation(expense);
-    /*
-    choice = AuxiliaryMethods::readChar();
-
-    while(choice != '1' && choice != '2')
-    {
-        cout << "There is no such option! Try again: " << endl;
-        choice = AuxiliaryMethods::readChar();
-    }
-
-    if(choice == '1')
-        expense.setDate(AuxiliaryMethods::getActualDate());
-
-    if(choice == '2')
-        expense.setDate(AuxiliaryMethods::specifyExactDate());
-
-    cout << "Specify type of expense: ";
-    expense.setItem(AuxiliaryMethods::readLine());
-    cout << "Insert expense in PLN: ";
-    expense.setAmount(AuxiliaryMethods::readInsertedAmountOfMoney());
-    expense.setExpenseId(fileWithExpenses.getLastExpenseId());
-    expense.setUserId(LOGGED_USER_ID);
-    */
-
-    fileWithExpenses.saveExpenseToFile(expense);
 }
 
 void OperationManager::displayBalance(string periodOfTime)

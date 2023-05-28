@@ -49,7 +49,7 @@ vector <Income> FileWithIncomes::loadIncomesFromFile()
             xml.IntoElem();
 
             xml.FindElem("IncomeId");
-            income.setIncomeId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            income.setOperationId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
             xml.FindElem("UserId");
             income.setUserId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
             xml.FindElem("Date");
@@ -77,5 +77,5 @@ void FileWithIncomes::setLastIncomeId(vector <Income> incomes)
     if (incomes.empty())
         lastIncomeId = 1;
     else
-        lastIncomeId = incomes.back().getIncomeId();
+        lastIncomeId = incomes.back().getOperationId();
 }

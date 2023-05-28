@@ -14,13 +14,13 @@ class Expense
     string amount;
 
 public:
-    void setExpenseId(int newId);
+    void setOperationId(int newId);
     void setUserId(int newUserId);
     void setDate(string newDate);
     void setItem(string newItem);
     void setAmount(string newAmount);
 
-    int getExpenseId();
+    int getOperationId();
     int getUserId();
     string getDate();
     string getItem();

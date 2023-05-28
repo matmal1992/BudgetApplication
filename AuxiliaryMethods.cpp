@@ -66,7 +66,7 @@ int AuxiliaryMethods::readIntiger()
     return number;
 }
 
-string AuxiliaryMethods::readInsertedAmountOfMoney()
+string AuxiliaryMethods::readFloat()
 {
     string input{};
     int amountOfDots{};

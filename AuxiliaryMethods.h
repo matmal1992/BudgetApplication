@@ -27,7 +27,7 @@ public:
     static string getSelectedTimePeriod();
     static string specifyExactDate();
 
-    static string readInsertedAmountOfMoney();
+    static string readFloat();
     static string readLine();
     static char readChar();
     static int readIntiger();

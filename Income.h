@@ -14,13 +14,13 @@ class Income
     string amount;
 
 public:
-    void setIncomeId(int newId);
+    void setOperationId(int newId);
     void setUserId(int userId);
     void setDate(string newDate);
     void setItem(string newItem);
     void setAmount(string newAmount);
 
-    int getIncomeId();
+    int getOperationId();
     int getUserId();
     string getDate();
     string getItem();

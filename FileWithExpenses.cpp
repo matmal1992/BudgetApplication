@@ -49,7 +49,7 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile()
             xml.IntoElem();
 
             xml.FindElem("ExpenseId");
-            expense.setExpenseId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+            expense.setOperationId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
             xml.FindElem("UserId");
             expense.setUserId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
             xml.FindElem("Date");
@@ -77,5 +77,5 @@ void FileWithExpenses::setLastExpenseId(vector <Expense> expenses)
     if (expenses.empty())
         lastExpenseId = 1;
     else
-        lastExpenseId = expenses.back().getExpenseId();
+        lastExpenseId = expenses.back().getOperationId();
 }
