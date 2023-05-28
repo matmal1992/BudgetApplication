@@ -15,16 +15,13 @@ using namespace std;
 class FileWithUsers
 {
     const string FILE_NAME = "Users.xml";
-public:
-    void addUserToFile(User user);
-    string getFileName();
-    vector <User> loadUsersFromFile();
-    void saveAllUsersToFile(vector <User> users);
+
     void removeFile(string fileNameWithExtension);
 
-
-
-
+public:
+    vector <User> loadUsersFromFile();
+    void addUserToFile(User user);
+    void saveAllUsersToFile(vector <User> users);
 };
 
 #endif

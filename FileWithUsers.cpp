@@ -1,10 +1,5 @@
 #include "FileWithUsers.h"
 
-string FileWithUsers::getFileName()
-{
-    return FILE_NAME;
-}
-
 void FileWithUsers::addUserToFile(User user)
 {
     CMarkup xml;

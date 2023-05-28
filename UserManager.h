@@ -17,7 +17,8 @@ class UserManager
 
     User insertDataForNewUser();
     void setLoggedUserId(int id);
-
+    bool checkIfLoginExists(string login);
+    int getNewUserId();
 
 public:
     UserManager(): loggedUserId(0)
@@ -27,12 +28,10 @@ public:
 
     void registerUser();
     void logInUser();
+    void changePasswordOfLoggedUser();
     void logOutUser();
-    int getNewUserId();
-    bool checkIfLoginExists(string login);
     int getLoggedUserId();
     bool checkIfUserIsLogged();
-    void changePasswordOfLoggedUser();
 };
 
 #endif

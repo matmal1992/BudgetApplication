@@ -33,7 +33,6 @@ public:
     static int readIntiger();
     static int stringToIntConversion(string number);
     static string intToStringConversion(int number);
-
 };
 
 #endif

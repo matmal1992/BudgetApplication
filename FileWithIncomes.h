@@ -16,6 +16,7 @@ class FileWithIncomes
 {
     const string FILE_NAME = "Incomes.xml";
     int lastIncomeId;
+
 public:
     FileWithIncomes()
     {
