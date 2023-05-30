@@ -1,6 +1,4 @@
 #include "BudgetApp.h"
-#include "AuxiliaryMethods.h"
-#include "DateOperations.h"
 
 using namespace std;
 

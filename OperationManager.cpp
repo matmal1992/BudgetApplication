@@ -2,7 +2,7 @@
 
 void OperationManager::addIncome()
 {
-    Income income;
+    Operation income;
 
     cout << "To add a current income - press 1." << endl;
     cout << "To add an income with specified date - press 2." << endl << endl;
@@ -14,7 +14,7 @@ void OperationManager::addIncome()
 
 void OperationManager::addExpense()
 {
-    Expense expense;
+    Operation expense;
 
     cout << "To add a current expense - press 1." << endl;
     cout << "To add an expense with specified date - press 2." << endl << endl;
@@ -56,8 +56,8 @@ template <typename T> T OperationManager::executeOperation(T incomeOrExpense)
 
 void OperationManager::displayBalance(string periodOfTime)
 {
-    vector <Income> userIncomes;
-    vector <Expense> userExpenses;
+    vector <Operation> userIncomes;
+    vector <Operation> userExpenses;
 
     userIncomes = displayIncomes(periodOfTime);
     userExpenses = displayExpenses(periodOfTime);
@@ -88,9 +88,9 @@ template <typename T> vector <T> OperationManager::getOperationsFromSpecifiedPer
     return tmpOperations;
 }
 
-vector <Income> OperationManager::displayIncomes(string periodOfTime)
+vector <Operation> OperationManager::displayIncomes(string periodOfTime)
 {
-    vector <Income> tmpIncomes;
+    vector <Operation> tmpIncomes;
 
     tmpIncomes = getOperationsFromSpecifiedPeriod(incomes, periodOfTime);
     sortByDate(tmpIncomes);
@@ -102,9 +102,9 @@ vector <Income> OperationManager::displayIncomes(string periodOfTime)
     return tmpIncomes;
 }
 
-vector <Expense> OperationManager::displayExpenses(string periodOfTime)
+vector <Operation> OperationManager::displayExpenses(string periodOfTime)
 {
-    vector <Expense> tmpExpenses;
+    vector <Operation> tmpExpenses;
 
     tmpExpenses = getOperationsFromSpecifiedPeriod(expenses, periodOfTime);
     sortByDate(tmpExpenses);
@@ -139,7 +139,7 @@ template <typename T> void OperationManager::displayOperations(vector <T> &opera
     cout << endl;
 }
 
-void OperationManager::incomesMinusExpenses(vector <Income> incomes, vector <Expense> expenses)
+void OperationManager::incomesMinusExpenses(vector <Operation> incomes, vector <Operation> expenses)
 {
     float incomesTotal{}, expensesTotal{}, balance{};
 

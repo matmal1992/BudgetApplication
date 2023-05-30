@@ -3,8 +3,8 @@
 
 #include "UserManager.h"
 #include"OperationManager.h"
-
-#include <string>
+#include "AuxiliaryMethods.h"
+#include "DateOperations.h"
 
 using namespace std;
 
@@ -24,7 +24,6 @@ public:
     char chooseOptionFromMainMenu();
     void goToMainMenu();
     void goToUserMenu();
-
 };
 
 #endif

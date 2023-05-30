@@ -1,6 +1,6 @@
 #include "FileWithExpenses.h"
 
-void FileWithExpenses::saveExpenseToFile(Expense expense)
+void FileWithExpenses::saveExpenseToFile(Operation expense)
 {
     CMarkup xml;
 
@@ -31,11 +31,11 @@ void FileWithExpenses::saveExpenseToFile(Expense expense)
     xml.Save(FILE_NAME);
 }
 
-vector <Expense> FileWithExpenses::loadExpensesFromFile()
+vector <Operation> FileWithExpenses::loadExpensesFromFile()
 {
-    vector <Expense> expenses;
+    vector <Operation> expenses;
     CMarkup xml;
-    Expense expense;
+    Operation expense;
 
     if(!xml.Load(FILE_NAME))
         cout << "The file is empty!" << endl;
@@ -72,7 +72,7 @@ int FileWithExpenses::getLastExpenseId()
     return lastExpenseId;
 }
 
-void FileWithExpenses::setLastExpenseId(vector <Expense> expenses)
+void FileWithExpenses::setLastExpenseId(vector <Operation> expenses)
 {
     if (expenses.empty())
         lastExpenseId = 1;

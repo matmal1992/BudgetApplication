@@ -1,6 +1,6 @@
 #include "FileWithIncomes.h"
 
-void FileWithIncomes::saveIncomeToFile(Income income)
+void FileWithIncomes::saveIncomeToFile(Operation income)
 {
     CMarkup xml;
 
@@ -31,11 +31,11 @@ void FileWithIncomes::saveIncomeToFile(Income income)
     xml.Save(FILE_NAME);
 }
 
-vector <Income> FileWithIncomes::loadIncomesFromFile()
+vector <Operation> FileWithIncomes::loadIncomesFromFile()
 {
-    vector <Income> incomes;
+    vector <Operation> incomes;
     CMarkup xml;
-    Income income;
+    Operation income;
 
     if(!xml.Load(FILE_NAME))
         cout << "The file is empty!" << endl;
@@ -72,7 +72,7 @@ int FileWithIncomes::getLastIncomeId()
     return lastIncomeId;
 }
 
-void FileWithIncomes::setLastIncomeId(vector <Income> incomes)
+void FileWithIncomes::setLastIncomeId(vector <Operation> incomes)
 {
     if (incomes.empty())
         lastIncomeId = 1;

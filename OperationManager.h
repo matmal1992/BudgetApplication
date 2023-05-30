@@ -1,8 +1,8 @@
 #ifndef _OPERATIONMANAGER_H_
 #define _OPERATIONMANAGER_H_
 
-#include "Income.h"
-#include "Expense.h"
+
+#include "Operation.h"
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
 #include "DateOperations.h"
@@ -14,15 +14,15 @@ using namespace std;
 
 class OperationManager
 {
-    vector <Income> incomes;
-    vector <Expense> expenses;
+    vector <Operation> incomes;
+    vector <Operation> expenses;
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
     const int LOGGED_USER_ID;
 
-    vector <Income> displayIncomes(string periodOfTime);
-    vector <Expense> displayExpenses(string periodOfTime);
-    void incomesMinusExpenses(vector <Income> incomes, vector <Expense> expenses);
+    vector <Operation> displayIncomes(string periodOfTime);
+    vector <Operation> displayExpenses(string periodOfTime);
+    void incomesMinusExpenses(vector <Operation> incomes, vector <Operation> expenses);
     template <typename T> void sortByDate(vector <T> &operations);
     template <typename T> void displayOperations(vector <T> &operations);
     template <typename T> vector <T> getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime);

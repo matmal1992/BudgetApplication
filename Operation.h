@@ -5,10 +5,10 @@
 
 using namespace std;
 
-class Expense
+class Operation
 {
     int userId;
-    int expenseId;
+    int operationId;
     string date;
     string item;
     string amount;

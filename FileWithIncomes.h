@@ -1,7 +1,7 @@
 #ifndef _FILEWITHINCOMES_H_
 #define _FILEWITHINCOMES_H_
 
-#include "Income.h"
+#include "Operation.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
 
@@ -23,9 +23,9 @@ public:
         lastIncomeId = 0;
     }
 
-    vector <Income> loadIncomesFromFile();
-    void saveIncomeToFile(Income income);
-    void setLastIncomeId(vector <Income> incomes);
+    vector <Operation> loadIncomesFromFile();
+    void saveIncomeToFile(Operation income);
+    void setLastIncomeId(vector <Operation> incomes);
     int getLastIncomeId();
 };
 

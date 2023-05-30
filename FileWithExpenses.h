@@ -1,7 +1,7 @@
 #ifndef _FILEWITHEXPENSES_H_
 #define _FILEWITHEXPENSES_H_
 
-#include "Expense.h"
+#include "Operation.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
 
@@ -23,9 +23,9 @@ public:
         lastExpenseId = 0;
     }
 
-    vector <Expense> loadExpensesFromFile();
-    void saveExpenseToFile(Expense expense);
-    void setLastExpenseId(vector <Expense> expense);
+    vector <Operation> loadExpensesFromFile();
+    void saveExpenseToFile(Operation expense);
+    void setLastExpenseId(vector <Operation> expense);
     int getLastExpenseId();
 };
 
