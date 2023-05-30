@@ -1,7 +1,6 @@
 #ifndef _OPERATIONMANAGER_H_
 #define _OPERATIONMANAGER_H_
 
-
 #include "Operation.h"
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
