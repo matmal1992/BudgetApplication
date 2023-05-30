@@ -22,10 +22,10 @@ class OperationManager
     vector <Operation> displayIncomes(string periodOfTime);
     vector <Operation> displayExpenses(string periodOfTime);
     void incomesMinusExpenses(vector <Operation> incomes, vector <Operation> expenses);
-    template <typename T> void sortByDate(vector <T> &operations);
-    template <typename T> void displayOperations(vector <T> &operations);
-    template <typename T> vector <T> getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime);
-    template <typename T> T executeOperation(T incomeOrExpense);
+    void sortByDate(vector <Operation> &operations);
+    void displayOperations(vector <Operation> &operations);
+    vector <Operation> getOperationsFromSpecifiedPeriod(vector <Operation> &operations, string periodOfTime);
+    Operation executeOperation();
 
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)

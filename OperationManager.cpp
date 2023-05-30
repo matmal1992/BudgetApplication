@@ -7,7 +7,7 @@ void OperationManager::addIncome()
     cout << "To add a current income - press 1." << endl;
     cout << "To add an income with specified date - press 2." << endl << endl;
 
-    income = executeOperation(income);
+    income = executeOperation();
 
     fileWithIncomes.saveIncomeToFile(income);
 }
@@ -19,14 +19,14 @@ void OperationManager::addExpense()
     cout << "To add a current expense - press 1." << endl;
     cout << "To add an expense with specified date - press 2." << endl << endl;
 
-    expense = executeOperation(expense);
+    expense = executeOperation();
 
     fileWithExpenses.saveExpenseToFile(expense);
 }
 
-template <typename T> T OperationManager::executeOperation(T incomeOrExpense)
+Operation OperationManager::executeOperation()
 {
-    T operation;
+    Operation operation;
     char choice{};
 
     choice = AuxiliaryMethods::readChar();
@@ -66,9 +66,9 @@ void OperationManager::displayBalance(string periodOfTime)
     system("pause");
 }
 
-template <typename T> vector <T> OperationManager::getOperationsFromSpecifiedPeriod(vector <T> &operations, string periodOfTime)
+vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(vector <Operation> &operations, string periodOfTime)
 {
-    vector <T> tmpOperations;
+    vector <Operation> tmpOperations;
     string firstDay{}, lastDay{};
 
     //periodOfTime has a following format: YYYY-MM-DD_YYYY-MM-DD
@@ -116,15 +116,15 @@ vector <Operation> OperationManager::displayExpenses(string periodOfTime)
     return tmpExpenses;
 }
 
-template <typename T> void OperationManager::sortByDate(vector<T> &operations)
+void OperationManager::sortByDate(vector<Operation> &operations)
 {
-    sort(operations.begin(), operations.end(), [](T &lhs, T &rhs)
+    sort(operations.begin(), operations.end(), [](Operation &lhs, Operation &rhs)
     {
         return lhs.getDate() < rhs.getDate();
     });
 }
 
-template <typename T> void OperationManager::displayOperations(vector <T> &operations)
+void OperationManager::displayOperations(vector <Operation> &operations)
 {
     cout << "DATE\t\tITEM\tAmount" << endl << endl;
     for(auto it = operations.begin(); it < operations.end(); ++it)
