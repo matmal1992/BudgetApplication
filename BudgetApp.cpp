@@ -1,5 +1,6 @@
 #include "BudgetApp.h"
 #include "AuxiliaryMethods.h"
+#include "DateOperations.h"
 
 using namespace std;
 
@@ -84,13 +85,13 @@ void BudgetApp::goToUserMenu()
             break;
         case '2': operationManager -> addExpense();
             break;
-        case '3': operationManager -> displayBalance(AuxiliaryMethods::getActualMonthTimespan());
+        case '3': operationManager -> displayBalance(DateOperations::getActualMonthTimespan());
             break;
-        case '4': operationManager -> displayBalance(AuxiliaryMethods::getPreviousMonthTimespan());
+        case '4': operationManager -> displayBalance(DateOperations::getPreviousMonthTimespan());
             break;
-        case '5': operationManager -> displayBalance(AuxiliaryMethods::getSelectedMonthTimespan());
+        case '5': operationManager -> displayBalance(DateOperations::getSelectedMonthTimespan());
             break;
-        case '6': operationManager -> displayBalance(AuxiliaryMethods::getSelectedTimePeriod());
+        case '6': operationManager -> displayBalance(DateOperations::getSelectedTimePeriod());
             break;
         case '7': userManager.changePasswordOfLoggedUser();
             break;

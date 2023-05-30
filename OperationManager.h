@@ -5,6 +5,7 @@
 #include "Expense.h"
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
+#include "DateOperations.h"
 
 #include <vector>
 #include <algorithm>

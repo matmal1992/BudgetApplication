@@ -38,10 +38,10 @@ template <typename T> T OperationManager::executeOperation(T incomeOrExpense)
     }
 
     if(choice == '1')
-        operation.setDate(AuxiliaryMethods::getActualDate());
+        operation.setDate(DateOperations::getActualDate());
 
     if(choice == '2')
-        operation.setDate(AuxiliaryMethods::specifyExactDate());
+        operation.setDate(DateOperations::specifyExactDate());
 
     cout << "Specify type (RTV, media, salary, etc.): ";
     operation.setItem(AuxiliaryMethods::readLine());
