@@ -7,9 +7,9 @@ void OperationManager::addIncome()
     cout << "To add a current income - press 1." << endl;
     cout << "To add an income with specified date - press 2." << endl << endl;
 
-    income = executeOperation();
+    income = executeOperation("Income");
 
-    fileWithIncomes.saveIncomeToFile(income);
+    fileWithOperations.saveOperationToFile(income);
 }
 
 void OperationManager::addExpense()
@@ -19,12 +19,12 @@ void OperationManager::addExpense()
     cout << "To add a current expense - press 1." << endl;
     cout << "To add an expense with specified date - press 2." << endl << endl;
 
-    expense = executeOperation();
+    expense = executeOperation("Expense");
 
-    fileWithExpenses.saveExpenseToFile(expense);
+    fileWithOperations.saveOperationToFile(expense);
 }
 
-Operation OperationManager::executeOperation()
+Operation OperationManager::executeOperation(string&& typeOfOperation)
 {
     Operation operation;
     char choice{};
@@ -43,13 +43,15 @@ Operation OperationManager::executeOperation()
     if(choice == '2')
         operation.setDate(DateOperations::specifyExactDate());
 
+
     cout << "Specify type (RTV, media, salary, etc.): ";
-    operation.setItem(AuxiliaryMethods::readLine());
+    operation.setTitle(AuxiliaryMethods::readLine());
     cout << "Insert amount in PLN: ";
     operation.setAmount(AuxiliaryMethods::readFloat());
     cout << "Money has been added" << endl;
-    operation.setOperationId(fileWithExpenses.getLastExpenseId());
+    operation.setOperationId(fileWithOperations.getLastOperationId());
     operation.setUserId(LOGGED_USER_ID);
+    operation.setType(typeOfOperation);
 
     return operation;
 }
@@ -132,7 +134,7 @@ void OperationManager::displayOperations(vector <Operation> &operations)
         if(it -> getUserId() == LOGGED_USER_ID)
         {
             cout << it -> getDate() << "\t";
-            cout << it -> getItem() << "\t";
+            cout << it -> getTitle() << "\t";
             cout << it -> getAmount() << endl;;
         }
     }

@@ -1,5 +1,5 @@
-#ifndef _EXPENSE_H_
-#define _EXPENSE_H_
+#ifndef _OPERATION_H_
+#define _OPERATION_H_
 
 #include <string>
 
@@ -9,21 +9,24 @@ class Operation
 {
     int userId;
     int operationId;
+    string type;
     string date;
-    string item;
+    string title;
     string amount;
 
 public:
     void setOperationId(int newId);
     void setUserId(int newUserId);
+    void setType(string newType);
     void setDate(string newDate);
-    void setItem(string newItem);
+    void setTitle(string newTitle);
     void setAmount(string newAmount);
 
     int getOperationId();
     int getUserId();
+    string getType();
     string getDate();
-    string getItem();
+    string getTitle();
     string getAmount();
 };
 

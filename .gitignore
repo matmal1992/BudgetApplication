@@ -3,8 +3,7 @@ BudgetApp.cbp
 BudgetApp.uxf
 functions_MMalek.txt
 Users.xml
-Incomes.xml
-Expenses.xml
+Operations.xml
 bin/
 obj/
 BudgetApp.layout

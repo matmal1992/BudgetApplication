@@ -2,8 +2,7 @@
 #define _OPERATIONMANAGER_H_
 
 #include "Operation.h"
-#include "FileWithIncomes.h"
-#include "FileWithExpenses.h"
+#include "FileWithOperations.h"
 #include "DateOperations.h"
 
 #include <vector>
@@ -15,8 +14,7 @@ class OperationManager
 {
     vector <Operation> incomes;
     vector <Operation> expenses;
-    FileWithIncomes fileWithIncomes;
-    FileWithExpenses fileWithExpenses;
+    FileWithOperations fileWithOperations;
     const int LOGGED_USER_ID;
 
     vector <Operation> displayIncomes(string periodOfTime);
@@ -25,13 +23,13 @@ class OperationManager
     void sortByDate(vector <Operation> &operations);
     void displayOperations(vector <Operation> &operations);
     vector <Operation> getOperationsFromSpecifiedPeriod(vector <Operation> &operations, string periodOfTime);
-    Operation executeOperation();
+    Operation executeOperation(string&& typeOfOperation);
 
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {
-        incomes = fileWithIncomes.loadIncomesFromFile();
-        expenses = fileWithExpenses.loadExpensesFromFile();
+        incomes = fileWithOperations.loadOperationsFromFile("Income");
+        expenses = fileWithOperations.loadOperationsFromFile("Expense");
     }
 
     void addIncome();
