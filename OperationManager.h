@@ -29,7 +29,10 @@ public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
     {
         incomes = fileWithOperations.loadOperationsFromFile("Income");
+        cout << "Incomes loaded" << endl;
         expenses = fileWithOperations.loadOperationsFromFile("Expense");
+        cout << "Expenses also loaded" << endl;
+        system("pause");
     }
 
     void addIncome();

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <windows.h>
 
 using namespace std;
 
@@ -24,8 +25,10 @@ public:
 
     vector <Operation> loadOperationsFromFile(string&& typeOfOperation);
     void saveOperationToFile(Operation operation);
-    void setLastOperationId(int lastId);
+    void setLastOperationId(vector <Operation> operations);
     int getLastOperationId();
+
+    void displayOperationsData(vector <Operation> ops);
 };
 
 #endif

@@ -11,6 +11,7 @@ void FileWithOperations::saveOperationToFile(Operation expense)
         xml.IntoElem();
         xml.AddElem("Operation");
         xml.IntoElem();
+        xml.AddElem("Type", expense.getType());
         xml.AddElem("OperationId", 1);
     }
     else
@@ -20,16 +21,20 @@ void FileWithOperations::saveOperationToFile(Operation expense)
         while(xml.FindElem());
         xml.AddElem("Operation");
         xml.IntoElem();
+        xml.AddElem("Type", expense.getType());
         xml.AddElem("OperationId", AuxiliaryMethods::intToStringConversion(getLastOperationId() + 1));
     }
 
-    xml.AddElem("Type", expense.getType());
     xml.AddElem("UserId", expense.getUserId());
     xml.AddElem("Date", expense.getDate());
     xml.AddElem("Title", expense.getTitle());
     xml.AddElem("Amount", expense.getAmount());
 
+    lastOperationId++;
+
     xml.Save(FILE_NAME);
+    cout << "To update changes, log in user again." << endl;
+    Sleep(1000);
 }
 
 vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOperation)
@@ -40,8 +45,7 @@ vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOpe
 
     if(!xml.Load(FILE_NAME))
     {
-        cout << "The file is empty!" << endl;
-        setLastOperationId(1);
+        cout << "The file with operations is empty!" << endl;
     }
     else
     {
@@ -70,17 +74,11 @@ vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOpe
                 xml.OutOfElem();
                 operations.push_back(operation);
             }
+            else
+                xml.OutOfElem();
         }
-        xml.OutOfElem();
-        cout << "Actual node 0: " << xml.GetTagName() << endl;
-        system("pause");
-        xml.IntoElem();
-        xml.FindElem("OperationId");
-        xml.IntoElem();
-        cout << "LastOpId: " << xml.GetData() << endl;
-        cout << "Actual node: " << xml.GetTagName() << endl;
-        system("pause");
-        setLastOperationId(AuxiliaryMethods::stringToIntConversion(xml.GetData()));
+
+        setLastOperationId(operations);
     }
     return operations;
 }
@@ -90,7 +88,17 @@ int FileWithOperations::getLastOperationId()
     return lastOperationId;
 }
 
-void FileWithOperations::setLastOperationId(int lastId)
+void FileWithOperations::setLastOperationId(vector <Operation> operations)
 {
-    lastOperationId = lastId;
+    if(operations.empty() && getLastOperationId() == 0)
+        lastOperationId = 1;
+
+    if(!operations.empty() && getLastOperationId() == 0)
+        lastOperationId = operations.back().getOperationId();
+
+    if(!operations.empty() && getLastOperationId() != 0)
+    {
+        if(operations.back().getOperationId() > getLastOperationId())
+            lastOperationId = operations.back().getOperationId();
+    }
 }
