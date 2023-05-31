@@ -10,6 +10,7 @@ void OperationManager::addIncome()
     income = executeOperation("Income");
 
     fileWithOperations.saveOperationToFile(income);
+    incomes.push_back(income);
 }
 
 void OperationManager::addExpense()
@@ -22,6 +23,7 @@ void OperationManager::addExpense()
     expense = executeOperation("Expense");
 
     fileWithOperations.saveOperationToFile(expense);
+    expenses.push_back(expense);
 }
 
 Operation OperationManager::executeOperation(string&& typeOfOperation)

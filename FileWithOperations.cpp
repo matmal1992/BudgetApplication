@@ -33,7 +33,7 @@ void FileWithOperations::saveOperationToFile(Operation expense)
     lastOperationId++;
 
     xml.Save(FILE_NAME);
-    cout << "To update changes, log in user again." << endl;
+    cout << "Log in user again to display updated balance." << endl;
     Sleep(1000);
 }
 
