@@ -4,6 +4,7 @@
 #include "Operation.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
+#include "XmlFile.h"
 
 #include <iostream>
 #include <vector>
@@ -11,15 +12,13 @@
 
 using namespace std;
 
-class FileWithOperations
+class FileWithOperations : public XmlFile
 {
-    const string FILE_NAME = "Operations.xml";
     int lastOperationId;
-
     void setLastOperationId(vector <Operation> operations);
 
 public:
-    FileWithOperations()
+    FileWithOperations(): XmlFile("Operations.xml")
     {
         lastOperationId = 0;
     }

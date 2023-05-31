@@ -4,6 +4,7 @@
 #include "User.h"
 #include "Markup.h"
 #include "AuxiliaryMethods.h"
+#include "XmlFile.h"
 
 #include <iostream>
 #include <vector>
@@ -11,11 +12,11 @@
 
 using namespace std;
 
-class FileWithUsers
+class FileWithUsers : public XmlFile
 {
-    const string FILE_NAME = "Users.xml";
-
 public:
+    FileWithUsers() : XmlFile("Users.xml") {}
+
     vector <User> loadUsersFromFile();
     void addUserToFile(User user);
     void saveChangedPasswordToFile(vector <User> users);

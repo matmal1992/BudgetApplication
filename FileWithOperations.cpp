@@ -2,8 +2,6 @@
 
 void FileWithOperations::saveOperationToFile(Operation operation)
 {
-    CMarkup xml;
-
     if(!xml.Load(FILE_NAME))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -38,7 +36,6 @@ void FileWithOperations::saveOperationToFile(Operation operation)
 vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOperation)
 {
     vector <Operation> operations;
-    CMarkup xml;
     Operation operation;
 
     if(!xml.Load(FILE_NAME))

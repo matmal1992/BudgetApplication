@@ -2,8 +2,6 @@
 
 void FileWithUsers::addUserToFile(User user)
 {
-    CMarkup xml;
-
     if(!xml.Load(FILE_NAME))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -28,7 +26,6 @@ void FileWithUsers::addUserToFile(User user)
 
 void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
 {
-    CMarkup xml;
     vector <User>::iterator it = users.begin();
 
     xml.Load(FILE_NAME);
@@ -56,7 +53,6 @@ void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
 vector <User> FileWithUsers::loadUsersFromFile()
 {
     vector <User> users;
-    CMarkup xml;
     User user;
 
     if(!xml.Load(FILE_NAME))
