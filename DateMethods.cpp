@@ -1,6 +1,6 @@
-#include "DateOperations.h"
+#include "DateMethods.h"
 
-string DateOperations::getActualDate()
+string DateMethods::getActualDate()
 {
     string actualDate{};
     string year{}, month{}, day{};
@@ -27,7 +27,7 @@ string DateOperations::getActualDate()
     return actualDate;
 }
 
-int DateOperations::insertYear()
+int DateMethods::insertYear()
 {
     int year{};
     int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
@@ -44,7 +44,7 @@ int DateOperations::insertYear()
     return year;
 }
 
-int DateOperations::insertMonth(int insertedYear)
+int DateMethods::insertMonth(int insertedYear)
 {
     int insertedMonth{};
     int actualYear = stringToIntConversion(getActualDate().substr(0, 4));
@@ -62,7 +62,7 @@ int DateOperations::insertMonth(int insertedYear)
     return insertedMonth;
 }
 
-int DateOperations::insertDay(int insertedMonth, int insertedYear)
+int DateMethods::insertDay(int insertedMonth, int insertedYear)
 {
     int day{};
 
@@ -78,7 +78,7 @@ int DateOperations::insertDay(int insertedMonth, int insertedYear)
     return day;
 }
 
-string DateOperations::getSelectedMonthTimespan()
+string DateMethods::getSelectedMonthTimespan()
 {
     int year{}, month{}, day{};
     string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
@@ -94,7 +94,7 @@ string DateOperations::getSelectedMonthTimespan()
     return periodOfTime;
 }
 
-string DateOperations::specifyExactDate()
+string DateMethods::specifyExactDate()
 {
     string date{};
     int day{}, month{}, year{};
@@ -107,7 +107,7 @@ string DateOperations::specifyExactDate()
     return date;
 }
 
-string DateOperations::getSelectedTimePeriod()
+string DateMethods::getSelectedTimePeriod()
 {
     string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
 
@@ -129,7 +129,7 @@ string DateOperations::getSelectedTimePeriod()
     return periodOfTime;
 }
 
-string DateOperations::getPreviousMonthTimespan()
+string DateMethods::getPreviousMonthTimespan()
 {
     string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
 
@@ -159,7 +159,7 @@ string DateOperations::getPreviousMonthTimespan()
     return periodOfTime;
 }
 
-string DateOperations::getActualMonthTimespan()
+string DateMethods::getActualMonthTimespan()
 {
     string beginOfPeriod{}, endOfPeriod{}, periodOfTime{};
 
@@ -178,7 +178,7 @@ string DateOperations::getActualMonthTimespan()
     return periodOfTime;
 }
 
-string DateOperations::addZeroIfNecessary(int insertedDayOrMonth)
+string DateMethods::addZeroIfNecessary(int insertedDayOrMonth)
 {
     string number{};
 
@@ -188,7 +188,7 @@ string DateOperations::addZeroIfNecessary(int insertedDayOrMonth)
     return number;
 }
 
-bool DateOperations::isLeapYear(int year)
+bool DateMethods::isLeapYear(int year)
 {
     if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
         return true;
@@ -196,7 +196,7 @@ bool DateOperations::isLeapYear(int year)
         return false;
 }
 
-int DateOperations::daysInGivenMonth(int numberOfMonth, int year)
+int DateMethods::daysInGivenMonth(int numberOfMonth, int year)
 {
     switch(numberOfMonth)
     {

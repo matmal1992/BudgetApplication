@@ -83,13 +83,13 @@ void BudgetApp::goToUserMenu()
             break;
         case '2': operationManager -> addExpense();
             break;
-        case '3': operationManager -> displayBalance(DateOperations::getActualMonthTimespan());
+        case '3': operationManager -> displayBalance(DateMethods::getActualMonthTimespan());
             break;
-        case '4': operationManager -> displayBalance(DateOperations::getPreviousMonthTimespan());
+        case '4': operationManager -> displayBalance(DateMethods::getPreviousMonthTimespan());
             break;
-        case '5': operationManager -> displayBalance(DateOperations::getSelectedMonthTimespan());
+        case '5': operationManager -> displayBalance(DateMethods::getSelectedMonthTimespan());
             break;
-        case '6': operationManager -> displayBalance(DateOperations::getSelectedTimePeriod());
+        case '6': operationManager -> displayBalance(DateMethods::getSelectedTimePeriod());
             break;
         case '7': userManager.changePasswordOfLoggedUser();
             break;

@@ -40,10 +40,10 @@ Operation OperationManager::executeOperation(string&& typeOfOperation)
     }
 
     if(choice == '1')
-        operation.setDate(DateOperations::getActualDate());
+        operation.setDate(DateMethods::getActualDate());
 
     if(choice == '2')
-        operation.setDate(DateOperations::specifyExactDate());
+        operation.setDate(DateMethods::specifyExactDate());
 
 
     cout << "Specify type (RTV, media, salary, etc.): ";

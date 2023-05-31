@@ -1,5 +1,5 @@
-#ifndef DATEOPERATIONS_H
-#define DATEOPERATIONS_H
+#ifndef DATEMETHODS_H
+#define DATEMETHODS_H
 
 #include "AuxiliaryMethods.h"
 
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class DateOperations : public AuxiliaryMethods
+class DateMethods : public AuxiliaryMethods
 {
     static string addZeroIfNecessary(int insertedMonthOrDay);
     static bool isLeapYear(int year);
