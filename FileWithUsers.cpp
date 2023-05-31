@@ -26,33 +26,31 @@ void FileWithUsers::addUserToFile(User user)
     xml.Save(FILE_NAME);
 }
 
-void FileWithUsers::saveAllUsersToFile(vector <User> users)
+void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
 {
     CMarkup xml;
+    vector <User>::iterator it = users.begin();
 
-    xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-    xml.AddElem("Users");
+    xml.Load(FILE_NAME);
+
+    xml.FindElem("Users");
     xml.IntoElem();
-
-    for (vector <User>::iterator itr = users.begin(); itr != users.end(); ++itr)
+    while(xml.FindElem())
     {
-        xml.AddElem(itr -> getLogin());
         xml.IntoElem();
-        xml.AddElem("Id", itr -> getId());
-        xml.AddElem("Login", itr -> getLogin());
-        xml.AddElem("Password", itr -> getPassword());
+        xml.FindElem("Password");
+
+        if(xml.GetData() != it -> getPassword())
+        {
+            xml.RemoveElem();
+            xml.AddElem("Password", it -> getPassword());
+        }
+
+        it++;
         xml.OutOfElem();
     }
 
-    removeFile(FILE_NAME);
     xml.Save(FILE_NAME);
-}
-
-void FileWithUsers::removeFile(string fileNameWithExtension)
-{
-    if (remove(fileNameWithExtension.c_str()) == 0) {}
-    else
-        cout << "Removing of the file failed. " << fileNameWithExtension << endl;
 }
 
 vector <User> FileWithUsers::loadUsersFromFile()

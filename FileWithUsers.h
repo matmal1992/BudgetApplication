@@ -15,12 +15,10 @@ class FileWithUsers
 {
     const string FILE_NAME = "Users.xml";
 
-    void removeFile(string fileNameWithExtension);
-
 public:
     vector <User> loadUsersFromFile();
     void addUserToFile(User user);
-    void saveAllUsersToFile(vector <User> users);
+    void saveChangedPasswordToFile(vector <User> users);
 };
 
 #endif

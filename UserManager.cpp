@@ -119,7 +119,7 @@ void UserManager::changePasswordOfLoggedUser()
     cout << "Insert new password: ";
     newPassword = AuxiliaryMethods::readLine();
 
-    for (vector <User>::iterator itr = users.begin(); itr != users.end(); ++itr)
+    for (auto itr = users.begin(); itr != users.end(); ++itr)
     {
         if (itr -> getId() == loggedUserId)
         {
@@ -128,7 +128,7 @@ void UserManager::changePasswordOfLoggedUser()
             system("pause");
         }
     }
-    fileWithUsers.saveAllUsersToFile(users);
+    fileWithUsers.saveChangedPasswordToFile(users);
 }
 
 void UserManager::logOutUser()

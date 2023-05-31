@@ -1,6 +1,6 @@
 #include "FileWithOperations.h"
 
-void FileWithOperations::saveOperationToFile(Operation expense)
+void FileWithOperations::saveOperationToFile(Operation operation)
 {
     CMarkup xml;
 
@@ -11,7 +11,7 @@ void FileWithOperations::saveOperationToFile(Operation expense)
         xml.IntoElem();
         xml.AddElem("Operation");
         xml.IntoElem();
-        xml.AddElem("Type", expense.getType());
+        xml.AddElem("Type", operation.getType());
         xml.AddElem("OperationId", 1);
     }
     else
@@ -21,14 +21,14 @@ void FileWithOperations::saveOperationToFile(Operation expense)
         while(xml.FindElem());
         xml.AddElem("Operation");
         xml.IntoElem();
-        xml.AddElem("Type", expense.getType());
+        xml.AddElem("Type", operation.getType());
         xml.AddElem("OperationId", AuxiliaryMethods::intToStringConversion(getLastOperationId() + 1));
     }
 
-    xml.AddElem("UserId", expense.getUserId());
-    xml.AddElem("Date", expense.getDate());
-    xml.AddElem("Title", expense.getTitle());
-    xml.AddElem("Amount", expense.getAmount());
+    xml.AddElem("UserId", operation.getUserId());
+    xml.AddElem("Date", operation.getDate());
+    xml.AddElem("Title", operation.getTitle());
+    xml.AddElem("Amount", operation.getAmount());
 
     lastOperationId++;
 
