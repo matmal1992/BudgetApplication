@@ -2,7 +2,7 @@
 
 void FileWithUsers::addUserToFile(User user)
 {
-    if(!xml.Load(FILE_NAME))
+    if(!xml.Load(getFileName()))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
@@ -21,14 +21,14 @@ void FileWithUsers::addUserToFile(User user)
     xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
 
-    xml.Save(FILE_NAME);
+    xml.Save(getFileName());
 }
 
 void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
 {
     vector <User>::iterator it = users.begin();
 
-    xml.Load(FILE_NAME);
+    xml.Load(getFileName());
 
     xml.FindElem("Users");
     xml.IntoElem();
@@ -47,7 +47,7 @@ void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
         xml.OutOfElem();
     }
 
-    xml.Save(FILE_NAME);
+    xml.Save(getFileName());
 }
 
 vector <User> FileWithUsers::loadUsersFromFile()
@@ -55,7 +55,7 @@ vector <User> FileWithUsers::loadUsersFromFile()
     vector <User> users;
     User user;
 
-    if(!xml.Load(FILE_NAME))
+    if(!xml.Load(getFileName()))
     {
         cout << "The file is empty!" << endl;
         system("pause");

@@ -8,13 +8,14 @@ using namespace std;
 class XmlFile
 {
     const string FILE_NAME;
-    CMarkup xml;
 
-    friend class FileWithUsers;
-    friend class FileWithOperations;
+protected:
+    CMarkup xml;
 
 public:
     XmlFile(string fileName): FILE_NAME(fileName) {}
+
+    string getFileName();
 };
 
 #endif

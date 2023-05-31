@@ -2,7 +2,7 @@
 
 void FileWithOperations::saveOperationToFile(Operation operation)
 {
-    if(!xml.Load(FILE_NAME))
+    if(!xml.Load(getFileName()))
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Operations");
@@ -30,7 +30,7 @@ void FileWithOperations::saveOperationToFile(Operation operation)
 
     lastOperationId++;
 
-    xml.Save(FILE_NAME);
+    xml.Save(getFileName());
 }
 
 vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOperation)
@@ -38,7 +38,7 @@ vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOpe
     vector <Operation> operations;
     Operation operation;
 
-    if(!xml.Load(FILE_NAME))
+    if(!xml.Load(getFileName()))
     {
         cout << "The file with operations is empty!" << endl;
     }
