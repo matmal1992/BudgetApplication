@@ -13,6 +13,10 @@ class BudgetApp
     UserManager userManager;
     OperationManager *operationManager;
 
+    char chooseOptionFromUserMenu();
+    char chooseOptionFromMainMenu();
+    void goToUserMenu();
+
 public:
     ~BudgetApp()
     {
@@ -20,10 +24,7 @@ public:
         operationManager = NULL;
     }
 
-    char chooseOptionFromUserMenu();
-    char chooseOptionFromMainMenu();
     void goToMainMenu();
-    void goToUserMenu();
 };
 
 #endif

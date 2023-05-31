@@ -33,8 +33,6 @@ void FileWithOperations::saveOperationToFile(Operation expense)
     lastOperationId++;
 
     xml.Save(FILE_NAME);
-    cout << "Log in user again to display updated balance." << endl;
-    Sleep(1000);
 }
 
 vector <Operation> FileWithOperations::loadOperationsFromFile(string&& typeOfOperation)

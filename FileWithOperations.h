@@ -8,7 +8,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <windows.h>
 
 using namespace std;
 
@@ -16,6 +15,8 @@ class FileWithOperations
 {
     const string FILE_NAME = "Operations.xml";
     int lastOperationId;
+
+    void setLastOperationId(vector <Operation> operations);
 
 public:
     FileWithOperations()
@@ -25,10 +26,7 @@ public:
 
     vector <Operation> loadOperationsFromFile(string&& typeOfOperation);
     void saveOperationToFile(Operation operation);
-    void setLastOperationId(vector <Operation> operations);
     int getLastOperationId();
-
-    void displayOperationsData(vector <Operation> ops);
 };
 
 #endif
