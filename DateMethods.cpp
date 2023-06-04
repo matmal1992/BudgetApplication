@@ -104,6 +104,9 @@ string DateMethods::specifyExactDate()
     day = insertDay(month, year);
 
     date = intToStringConversion(year)+ "-" + addZeroIfNecessary(month) + "-" + addZeroIfNecessary(day);
+
+     cout << "Checking inserted date: " << date << endl;
+    system("pause");
     return date;
 }
 
@@ -184,6 +187,8 @@ string DateMethods::addZeroIfNecessary(int insertedDayOrMonth)
 
     if(insertedDayOrMonth < 10)
         number = '0' + intToStringConversion(insertedDayOrMonth);
+    else
+        number = intToStringConversion(insertedDayOrMonth);
 
     return number;
 }
