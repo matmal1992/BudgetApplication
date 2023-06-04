@@ -83,7 +83,7 @@ int FileWithOperations::getLastOperationId()
     return lastOperationId;
 }
 
-void FileWithOperations::setLastOperationId(vector <Operation> operations)
+void FileWithOperations::setLastOperationId(vector <Operation> &operations)
 {
     if(operations.empty() && getLastOperationId() == 0)
         lastOperationId = 1;

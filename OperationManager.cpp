@@ -70,7 +70,7 @@ void OperationManager::displayBalance(string periodOfTime)
     system("pause");
 }
 
-vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(vector <Operation> &operations, string periodOfTime)
+vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, string periodOfTime)
 {
     vector <Operation> tmpOperations;
     string firstDay{}, lastDay{};
@@ -128,7 +128,7 @@ void OperationManager::sortByDate(vector<Operation> &operations)
     });
 }
 
-void OperationManager::displayOperations(vector <Operation> &operations)
+void OperationManager::displayOperations(const vector <Operation> &operations)
 {
     cout << "DATE\t\tITEM\tAmount" << endl << endl;
     for(auto it = operations.begin(); it < operations.end(); ++it)
@@ -143,7 +143,7 @@ void OperationManager::displayOperations(vector <Operation> &operations)
     cout << endl;
 }
 
-void OperationManager::incomesMinusExpenses(vector <Operation> incomes, vector <Operation> expenses)
+void OperationManager::incomesMinusExpenses(const vector <Operation> &incomes, const vector <Operation> &expenses)
 {
     float incomesTotal{}, expensesTotal{}, balance{};
 

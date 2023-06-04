@@ -19,10 +19,10 @@ class OperationManager
 
     vector <Operation> displayIncomes(string periodOfTime);
     vector <Operation> displayExpenses(string periodOfTime);
-    void incomesMinusExpenses(vector <Operation> incomes, vector <Operation> expenses);
+    void incomesMinusExpenses(const vector <Operation> &incomes, const vector <Operation> &expenses);
     void sortByDate(vector <Operation> &operations);
-    void displayOperations(vector <Operation> &operations);
-    vector <Operation> getOperationsFromSpecifiedPeriod(vector <Operation> &operations, string periodOfTime);
+    void displayOperations(const vector <Operation> &operations);
+    vector <Operation> getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, string periodOfTime);
     Operation executeOperation(string&& typeOfOperation);
 
 public:

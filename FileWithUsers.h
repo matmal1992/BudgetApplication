@@ -19,7 +19,7 @@ public:
 
     vector <User> loadUsersFromFile();
     void addUserToFile(User user);
-    void saveChangedPasswordToFile(vector <User> users);
+    void saveChangedPasswordToFile(vector <User> &users);
 };
 
 #endif

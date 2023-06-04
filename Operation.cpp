@@ -12,10 +12,10 @@ void Operation::setDate(string newDate) {date = newDate;}
 void Operation::setTitle(string newTitle) {title = newTitle;}
 void Operation::setAmount(string newAmount) {amount = newAmount;}
 
-int Operation::getOperationId() {return operationId;}
-int Operation::getUserId() {return userId;}
-string Operation::getType() {return type;}
-string Operation::getDate() {return date;}
-string Operation::getTitle() {return title;}
-string Operation::getAmount() {return amount;}
+int Operation::getOperationId() const {return operationId;}
+int Operation::getUserId() const {return userId;}
+string Operation::getType() const {return type;}
+string Operation::getDate() const {return date;}
+string Operation::getTitle() const {return title;}
+string Operation::getAmount() const {return amount;}
 

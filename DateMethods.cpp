@@ -105,8 +105,6 @@ string DateMethods::specifyExactDate()
 
     date = intToStringConversion(year)+ "-" + addZeroIfNecessary(month) + "-" + addZeroIfNecessary(day);
 
-     cout << "Checking inserted date: " << date << endl;
-    system("pause");
     return date;
 }
 

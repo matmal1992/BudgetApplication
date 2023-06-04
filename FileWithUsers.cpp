@@ -24,7 +24,7 @@ void FileWithUsers::addUserToFile(User user)
     xml.Save(getFileName());
 }
 
-void FileWithUsers::saveChangedPasswordToFile(vector <User> users)
+void FileWithUsers::saveChangedPasswordToFile(vector <User> &users)
 {
     vector <User>::iterator it = users.begin();
 

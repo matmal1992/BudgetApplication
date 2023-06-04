@@ -22,12 +22,12 @@ public:
     void setTitle(string newTitle);
     void setAmount(string newAmount);
 
-    int getOperationId();
-    int getUserId();
-    string getType();
-    string getDate();
-    string getTitle();
-    string getAmount();
+    int getOperationId() const;
+    int getUserId() const;
+    string getType() const;
+    string getDate() const;
+    string getTitle() const;
+    string getAmount() const;
 };
 
 #endif
