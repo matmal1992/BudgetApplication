@@ -11,8 +11,8 @@ void User::setPassword(string newPassword) {password = newPassword;}
 void User::setName(string newName) {name = newName;}
 void User::setSurname(string newSurname) {surname = newSurname;}
 
-int User::getId() {return id;}
-string User::getLogin() {return login;}
-string User::getPassword() {return password;}
-string User::getName() {return name;}
-string User::getSurname() {return surname;}
+int User::getId() const {return id;}
+string User::getLogin() const {return login;}
+string User::getPassword() const {return password;}
+string User::getName() const {return name;}
+string User::getSurname() const {return surname;}

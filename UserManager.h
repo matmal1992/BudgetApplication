@@ -17,7 +17,7 @@ class UserManager
 
     User insertDataForNewUser();
     void setLoggedUserId(int id);
-    bool checkIfLoginExists(string login);
+    bool checkIfLoginExists(const string &login);
     int getNewUserId();
 
 public:

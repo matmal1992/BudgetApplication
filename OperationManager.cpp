@@ -26,7 +26,7 @@ void OperationManager::addExpense()
     expenses.push_back(expense);
 }
 
-Operation OperationManager::executeOperation(string&& typeOfOperation)
+Operation OperationManager::executeOperation(const string&& typeOfOperation)
 {
     Operation operation;
     char choice{};
@@ -58,7 +58,7 @@ Operation OperationManager::executeOperation(string&& typeOfOperation)
     return operation;
 }
 
-void OperationManager::displayBalance(string periodOfTime)
+void OperationManager::displayBalance(const string &periodOfTime)
 {
     vector <Operation> userIncomes;
     vector <Operation> userExpenses;
@@ -70,7 +70,7 @@ void OperationManager::displayBalance(string periodOfTime)
     system("pause");
 }
 
-vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, string periodOfTime)
+vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, const string &periodOfTime)
 {
     vector <Operation> tmpOperations;
     string firstDay{}, lastDay{};
@@ -92,7 +92,7 @@ vector <Operation> OperationManager::getOperationsFromSpecifiedPeriod(const vect
     return tmpOperations;
 }
 
-vector <Operation> OperationManager::displayIncomes(string periodOfTime)
+vector <Operation> OperationManager::displayIncomes(const string &periodOfTime)
 {
     vector <Operation> tmpIncomes;
 
@@ -106,7 +106,7 @@ vector <Operation> OperationManager::displayIncomes(string periodOfTime)
     return tmpIncomes;
 }
 
-vector <Operation> OperationManager::displayExpenses(string periodOfTime)
+vector <Operation> OperationManager::displayExpenses(const string &periodOfTime)
 {
     vector <Operation> tmpExpenses;
 

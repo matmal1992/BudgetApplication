@@ -39,7 +39,7 @@ int UserManager::getNewUserId()
         return users.back().getId() + 1;
 }
 
-bool UserManager::checkIfLoginExists(string login)
+bool UserManager::checkIfLoginExists(const string &login)
 {
     for(vector <User>::iterator itr = users.begin(); itr != users.end(); ++itr)
     {

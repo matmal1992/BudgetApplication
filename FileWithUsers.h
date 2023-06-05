@@ -18,7 +18,7 @@ public:
     FileWithUsers() : XmlFile("Users.xml") {}
 
     vector <User> loadUsersFromFile();
-    void addUserToFile(User user);
+    void addUserToFile(const User &user);
     void saveChangedPasswordToFile(vector <User> &users);
 };
 

@@ -1,6 +1,6 @@
 #include "FileWithUsers.h"
 
-void FileWithUsers::addUserToFile(User user)
+void FileWithUsers::addUserToFile(const User &user)
 {
     if(!xml.Load(getFileName()))
     {

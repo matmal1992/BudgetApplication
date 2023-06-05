@@ -17,13 +17,13 @@ class OperationManager
     FileWithOperations fileWithOperations;
     const int LOGGED_USER_ID;
 
-    vector <Operation> displayIncomes(string periodOfTime);
-    vector <Operation> displayExpenses(string periodOfTime);
+    vector <Operation> displayIncomes(const string &periodOfTime);
+    vector <Operation> displayExpenses(const string &periodOfTime);
     void incomesMinusExpenses(const vector <Operation> &incomes, const vector <Operation> &expenses);
     void sortByDate(vector <Operation> &operations);
     void displayOperations(const vector <Operation> &operations);
-    vector <Operation> getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, string periodOfTime);
-    Operation executeOperation(string&& typeOfOperation);
+    vector <Operation> getOperationsFromSpecifiedPeriod(const vector <Operation> &operations, const string &periodOfTime);
+    Operation executeOperation(const string&& typeOfOperation);
 
 public:
     OperationManager(int loggedUserId): LOGGED_USER_ID(loggedUserId)
@@ -34,7 +34,7 @@ public:
 
     void addIncome();
     void addExpense();
-    void displayBalance(string periodOfTime);
+    void displayBalance(const string &periodOfTime);
 };
 
 #endif

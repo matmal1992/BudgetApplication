@@ -101,8 +101,6 @@ string AuxiliaryMethods::readFloat()
     }while(input == "");
 
     formatAmount(input);
-    cout << "Float: " << input << endl;
-    system("pause");
 
     return input;
 }

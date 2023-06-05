@@ -1,6 +1,6 @@
 #include "FileWithOperations.h"
 
-void FileWithOperations::saveOperationToFile(Operation operation)
+void FileWithOperations::saveOperationToFile(const Operation &operation)
 {
     if(!xml.Load(getFileName()))
     {
@@ -83,7 +83,7 @@ int FileWithOperations::getLastOperationId()
     return lastOperationId;
 }
 
-void FileWithOperations::setLastOperationId(vector <Operation> &operations)
+void FileWithOperations::setLastOperationId(const vector <Operation> &operations)
 {
     if(operations.empty() && getLastOperationId() == 0)
         lastOperationId = 1;

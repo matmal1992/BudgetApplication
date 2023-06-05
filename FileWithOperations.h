@@ -15,7 +15,7 @@ using namespace std;
 class FileWithOperations : public XmlFile
 {
     int lastOperationId;
-    void setLastOperationId(vector <Operation> &operations);
+    void setLastOperationId(const vector <Operation> &operations);
 
 public:
     FileWithOperations(): XmlFile("Operations.xml")
@@ -24,7 +24,7 @@ public:
     }
 
     vector <Operation> loadOperationsFromFile(string&& typeOfOperation);
-    void saveOperationToFile(Operation operation);
+    void saveOperationToFile(const Operation &operation);
     int getLastOperationId();
 };
 

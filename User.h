@@ -20,11 +20,11 @@ public:
     void setLogin(string newLogin);
     void setPassword(string newPassword);
 
-    int getId();
-    string getName();
-    string getSurname();
-    string getLogin();
-    string getPassword();
+    int getId() const;
+    string getName() const;
+    string getSurname() const;
+    string getLogin() const;
+    string getPassword() const;
 };
 
 #endif
