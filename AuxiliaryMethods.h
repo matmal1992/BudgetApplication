@@ -16,6 +16,7 @@ public:
     static int readIntiger();
     static int stringToIntConversion(string number);
     static string intToStringConversion(int number);
+    static void formatAmount(string &amount);
 };
 
 #endif

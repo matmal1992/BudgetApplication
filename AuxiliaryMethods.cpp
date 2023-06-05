@@ -100,6 +100,32 @@ string AuxiliaryMethods::readFloat()
         }
     }while(input == "");
 
+    formatAmount(input);
+    cout << "Float: " << input << endl;
+    system("pause");
+
     return input;
+}
+
+void AuxiliaryMethods::formatAmount(string &amount)
+{
+    int dotPos = amount.find('.');
+    string decimals{};
+
+    if(dotPos <= 0)
+        amount.append(".00");
+
+    if(dotPos > 0)
+    {
+        decimals = amount.substr(dotPos);
+
+        if(decimals.size() < 3)
+            decimals.append("0");
+
+        if(decimals.size() > 3)
+            decimals.erase(3);
+
+        amount.replace(dotPos, amount.size(),  decimals);
+    }
 }
 
